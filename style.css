@@ -455,7 +455,7 @@
     }
 
     .tec {
-        min-height: 100vh !important;
+        min-height: 50vh !important;
         border-bottom: 0.4px solid #4a4a56;
     }
 
@@ -522,7 +522,7 @@
         display: flex;
         justify-content: center;
         margin-top: 10%;
-        gap: 20px;
+        gap: 5%;
     }
 
     .img-cont-m {
@@ -533,8 +533,8 @@
         display: flex;
         justify-content: center;
         margin-top: 20px;
-        padding-bottom: 5%;
-        gap: 20px;
+        padding-bottom: 8%;
+        gap: 5%;
     }
 
 }
