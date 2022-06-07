@@ -102,10 +102,6 @@
     transition-duration: 2s;*/
 }
 
-#a-cards {
-    margin-top: 170px;
-}
-
 #cards {
     min-height: 100vh !important;
     background-color: #23232e;
@@ -433,6 +429,16 @@
         display: flex;
         justify-content: center;
         width: 70px;
+    }
+
+    .caixa {
+        position: relative;
+        width: 220px;
+        height: 300px;
+        color: #fff;
+        background: #111;
+        margin: 4% 30px;
+        border-radius: 15px;
     }
 
     .div-h1-tec {
