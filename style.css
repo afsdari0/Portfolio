@@ -102,7 +102,9 @@
     transition-duration: 2s;*/
 }
 
-#cards {
+        /*     SLIDES     */
+
+#sec-slides {
     min-height: 100vh !important;
     background-color: #23232e;
     border-bottom: 0.4px solid #4a4a56;
@@ -110,12 +112,12 @@
 
 }
 
-.div-h1-cards {
+.div-h1-slides {
     margin-left: 40%;
     margin-right: 40%;
 }
 
-.h1-cards {
+.h1-slides {
     color: #fff;
     display: block;
     text-align: center;
@@ -127,81 +129,80 @@
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 
-.cards-grupo {
-    position: relative;
+.index-sli {
+    margin-top: 6%;
+    width: 800px;
+    height: 450px;
+    border-radius: 20px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.9);
+    position: absolute;
+    left: 50%;
+    overflow: hidden;
+    transform: translate(-50%);
+}
+
+.inp-sli {
+    display: none;
+}
+
+.slides {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0;
-    flex-wrap: wrap;
-}
-
-.caixa {
-    position: relative;
-    width: 220px;
-    height: 300px;
-    color: #fff;
-    background: #111;
-    margin: 100px 30px;
-    border-radius: 15px;
-}
-
-.conteudo-card {   
-    padding-top: 50%;
+     /* WIDTH + 100% PARA CADA SLIDE */
+    width: 100%;
     height: 100%;
-    transition-duration: 1s;
-    opacity: 0;
 }
 
-.conteudo-card:hover {
-    padding-top: 30%;
+#slide1:checked ~ .slide-s1 {
+    margin-left: 0;
     opacity: 1;
 }
 
-.h2-projetos {
-    text-align: center;
-    padding-bottom: 10px;
-    font-family: 'Righteous', cursive;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+#slide {
+    width: 100%;
+    opacity: 0;
+    transition: 1s;
+    border-radius: 20px;
 }
 
-.p-tec-card {
-    padding-left: 50px;
-    padding-bottom: 20px;
-    color: #6690CB;
-    font-family: 'Sarala', sans-serif;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+.slide-s1 {
+    background: #000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #21d4fd;
 }
 
-.p-sobre-card {
-    padding-left: 50px;
-    font-size: 80%;
-    padding-bottom: 10px;
-    font-family: 'Sarala', sans-serif;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+.h1-sli-s1 {
+    color: #fff; 
 }
 
-.botao-card {
-    margin-left: 50px;
-    height: 30px;
-    width: 85px;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-    background-color: #6690CB;
-    font-family: 'Sarala', sans-serif;
-    color: #fff;
-    transition: 0.3s;
+.navegation {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
 }
 
-.botao-card:hover {
-    opacity: 0.7;
+.bar {
+    width: 60px;
+    height: 17px;
+    border: 2px solid #6690CB;
+    margin: 5px;
+    border-radius: 5px;
     cursor: pointer;
+    opacity: 0.5;
+    transition: 0.4s;
+
 }
+
+.bar:hover {
+    background-color: #6690CB;
+    opacity: 1;
+}
+
+    /*     TEC     */
 
 #tec-cont {
     min-height: 100vh !important;
@@ -288,6 +289,8 @@
     margin: 10px;  
 }
 
+    /*     CONT    */
+
 .cont {
     min-height: 40%;
 }
@@ -312,7 +315,7 @@
 .div-cont-m {
     display: flex;
     justify-content: center;
-    margin-top: 60px;
+    margin-top: 85px;
     gap: 30px;
 }
 
@@ -320,11 +323,14 @@
     display: flex;
     justify-content: center;
     margin-top: 30px;
-    
     gap: 30px;
 }
 
+    /*     RESPONSIVE     */
+
 @media (max-width: 667px) {
+    
+        /*     MENU HANB     */
 
     body {
         overflow-x: hidden;
@@ -379,6 +385,8 @@
 
     /*   ELEMENTOS REAJUSTADOS   */
 
+        /*     HEADER     */
+
     .img-daru {
         height: 140px;
         margin-top: 25vh;
@@ -416,7 +424,9 @@
         width: 300px;
     }
 
-    .div-h1-cards {
+        /*     SLIDES     */
+
+    .div-h1-slides {
         display: flex;
         margin-left: 0%;
         margin-right: 0%;
@@ -424,22 +434,14 @@
         width: 100vw;
     }
 
-    .h1-cards {
+    .h1-slides {
         color: #fff;
         display: flex;
         justify-content: center;
         width: 70px;
     }
 
-    .caixa {
-        position: relative;
-        width: 220px;
-        height: 300px;
-        color: #fff;
-        background: #111;
-        margin: 4% 30px;
-        border-radius: 15px;
-    }
+        /*     TEC     */
 
     .div-h1-tec {
         display: flex;
@@ -505,6 +507,8 @@
         margin: 20px 5px;
     }
 
+        /*     CONT     */
+
     .cont {
         min-height: 30vh;
     }
@@ -544,6 +548,9 @@
     }
 
 }
+
+   /*      ANIMAÇÃO HANB       */
+    
 
 .cabecalho-nav-list.active {
     transform: translatex(0);
