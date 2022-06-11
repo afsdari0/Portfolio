@@ -181,7 +181,7 @@
 }
 
 .slides:hover .div-img-slide img {
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 .conteudo-slide {
@@ -264,7 +264,7 @@
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 1;
     transition: 0.4s;
 
 }
