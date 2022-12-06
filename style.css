@@ -75,8 +75,10 @@ header {
 
 #main-s-apre {
     background: url("imagens/code2.jpg") no-repeat center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
-    
     align-items: center;
     flex-direction: column;
     color: #FFF;
@@ -102,6 +104,11 @@ header {
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
     /*transition-timing-function: ease;
     transition-duration: 2s;*/
+}
+
+.contact_img_button{
+    margin: 1rem 5px 0 5px;
+    height: 40px;
 }
 
         /*     PROJETOS     */
