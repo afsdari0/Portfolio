@@ -74,7 +74,7 @@ header {
 }
 
 #main-s-apre {
-    background: url("/Img/code2.jpg") no-repeat center center;
+    background: url("Img/code2.jpg") no-repeat center center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -320,7 +320,7 @@ header {
     }
 
     #main-s-apre {
-        background: url("/Img/code2.jpg") no-repeat center center;
+        background: url("Img/code2.jpg") no-repeat center center;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
