@@ -74,7 +74,7 @@ header {
 }
 
 #main-s-apre {
-    background: url("imagens/code2.jpg") no-repeat center center;
+    background: url("/Img/code2.jpg") no-repeat center center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -109,6 +109,11 @@ header {
 .contact_img_button{
     margin: 1rem 5px 0 5px;
     height: 40px;
+    transition: opacity 0.3s;
+}
+
+.contact_img_button:hover{
+    opacity: 0.5;
 }
 
         /*     PROJETOS     */
@@ -184,7 +189,7 @@ header {
     padding-left: 2rem;
     padding-bottom: 2rem;
     border-radius: 0.7rem;
-    text-shadow: 0.3rem 0.2rem 0.3rem rgb(0 0 0 / 60%);
+    text-shadow: 0.3rem 0.2rem 0.3rem rgb(0 0 0 / 75%);
     transition: all 0.6s;
 }
 
@@ -196,7 +201,7 @@ header {
 
 .index_cards h1 {
     font-family: 'Sarala', sans-serif;
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 500;
     color: #eeeeee;
     margin-top: 4rem;
@@ -206,6 +211,7 @@ header {
 .index_cards h2 {
     font-family: 'Raleway', sans-serif;
     font-weight: bolder;
+    font-size: 1.3rem;
     color: #6690CB;
     margin-bottom: 1.5rem;
     
@@ -220,15 +226,21 @@ header {
     
 }
 
-.index_cards_btn_ass {
+.index_cards button {
     width: 8rem;
     height: 2.5rem;
+    cursor: pointer;
     text-transform: uppercase;
     background: #6690CB;
     font-family: var(--font-action);
     color: #eeeeee;
     border-radius: 0.5rem;
     border: none;
+    transition: opacity 0.3s;
+}
+
+.index_cards button:hover {
+    opacity: 0.5;
 }
 
     /*     RESPONSIVE     */
@@ -308,7 +320,7 @@ header {
     }
 
     #main-s-apre {
-        background: url("imagens/code2.jpg") no-repeat center center;
+        background: url("/Img/code2.jpg") no-repeat center center;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
