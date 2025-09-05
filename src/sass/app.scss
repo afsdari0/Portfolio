@@ -7,12 +7,26 @@
 .mainApp {
     height: 100% !important;
     width: 100% !important;
-    background-image: url("./assets/futuristic_black_bg.png");
+    background-image: url("./assets/futuristic_black_bg.jpeg");
     background-repeat: repeat;
     background-size: auto;
-    
+    background-attachment: fixed;
+    animation: subirBg 20s linear infinite;
 }
 
+@keyframes subirBg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%; /* valor negativo = sobe */
+  }
+}
+
+.mainAppDivEffect {
+  background: transparent;
+  pointer-events: none;
+}
 .mainContainer {
     border: 1px red solid;
     max-width: 1920px !important;
@@ -31,20 +45,25 @@
  margin: 0 1.5vw 0 1.5vw;
 }
 
+.indexContainerConfig {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
 .navColumn {
-    background-color: #192a51;
     display: flex ;
     position: fixed;
     height: 88vh;
     width: 29vw !important;
     border-radius: 50px 0px;
-    background-image: url("./assets/logo.png");
-    background-repeat: repeat;
-    background-size: auto;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(8px);
 }
 
 .indexContainer {
-    background-color: #0f172a;
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(1px);
     height: 200vh;
     width: 65.5vw !important;
     margin: 6vh 1.5vw 0 0 !important;
@@ -63,3 +82,4 @@
   border: 1px blue solid;
 
 } 
+
