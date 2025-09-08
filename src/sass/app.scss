@@ -71,15 +71,26 @@
     border-radius: 10px;
 }
 
-.lala{
-  border: 1px red solid;
-  max-width: 1920px !important;
-  min-height: 100vh;
+.navbarItens {
+  font-size: medium;
+  opacity: 0.8;
+  font-size: 1.4rem;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+.navbarItens:hover {
+opacity: 1;
+}
+
+.navbarContainer {
+  display: flex
 
 }
 
-.lele{
-  border: 1px blue solid;
+.containerProjects {
+  border: 1px red solid;
+  height: 88vh;
+}
 
-} 
 

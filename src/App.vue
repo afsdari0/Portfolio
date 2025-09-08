@@ -1,9 +1,7 @@
 <template>
   <v-app>
     <main class="mainApp" :style="{ backgroundImage: `url(${bg})` }">
-      <div class="mainAppDivEffect">
         <router-view />
-      </div>
     </main>
   </v-app>
 </template>
@@ -12,6 +10,6 @@
 
 </style>
 <script setup>
-  //
-  import bg from '@/assets/bgFuturistaRepeat.png'
+  
+  import bg from '@/assets/bgFuturistaRepeat.jpeg'
 </script>
