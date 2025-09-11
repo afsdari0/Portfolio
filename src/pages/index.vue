@@ -1,41 +1,46 @@
 <template>
     <v-parallax src="@/assets/bgPortfolio.png">
-        <v-container max-width="lg" fluid class="mainContainer d-flex flex-column p-0 align-center"> 
-            <v-container fluid class="navBar pa-0 ma-0 w-75 d-flex justify-center">
-                <nav class="navNavbar d-flex h-100 w-75 d-flex justify-space-evenly align-center ">
-                    <a class="navbarItens "> Projetos</a>
-                    <a class="navbarItens "> Sobre Mim</a>
-                    <a class="navbarItens "> Habilidades</a>
-                    <a class="navbarItens "> Contato</a>
-                </nav>
-            </v-container>
+        <v-container class="mainContainer w-100 d-flex flex-column pa-0 align-center"> 
+            <nav class="navBar pl-5 pr-5 ma-0 w-100 d-flex justify-center">
+                <ul class="d-flex h-100 d-flex justify-space-evenly align-center ">
+                    <li class="firstLi">
+                        <a class="navbarItens "> Projetos</a>
+                    </li>
+                    <li>
+                        <a class="navbarItens "> Sobre Mim</a>
+                    </li>
+                    <li class="thirdLi">
+                        <a class="navbarItens "> Habilidades</a>
+                    </li>
+                    <li>
+                        <a class="navbarItens "> Contato</a>
+                    </li>
+                </ul>
+            </nav>
             <v-container class="indexContainer">
-                <v-container grid-list-md class="containerProjects">
-                    <v-carousel height="400" width="80%" show-arrows="hover" cycle hide-delimiter-background>
-                        <v-carousel-item v-for="(slide, i) in slides" :key="i">
-                            <v-sheet :color="colors[i]" height="100%" >
-                                <div class="d-flex fill-height justify-center align-center">
-                                    <div class="text-h2">
-                                        {{ slide }} Slide
-                                    </div>
-                                </div>
-                            </v-sheet>
-                        </v-carousel-item>
-                    </v-carousel>
+                <v-container class="containerProjects pa-0">
+                    <div class="d-flex justify-center">
+                        <h1 class="h1IndexTitles">Projetos</h1>
+                    </div>
+                    <v-container class="containerCardsProjects pt-7 d-flex w100% justify-center align-center">
+                        <div class="d-flex">
+                            <project-card/>
+                        </div>
+                        <div class="d-flex secondCard">
+                            <project-card/>
+                        </div>
+                        <div class="d-flex">
+                            <project-card/>
+                        </div>
+                    </v-container>
+                    
                 </v-container>
             </v-container>
         </v-container>
     </v-parallax>
 </template>
 <script setup>
-import navigation from '@/components/navigation.vue';
 
-const colors = [
-    'indigo',
-    'warning',
-]
-const slides = [
-    'First',
-    'Second',
-]
+
+
 </script>
