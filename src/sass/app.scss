@@ -9,6 +9,9 @@
 .mainContainer {
   border: green 1px solid;
   max-width: 1920px !important;
+  background: linear-gradient(-45deg, #0A0F1E, #121826, #1D2A44, #0A0F1E);
+  background-size: 300% 300%;
+  animation: gradientShift 20s ease infinite;
 
   .navBar {
     border: palegoldenrod 1px solid;
@@ -52,11 +55,28 @@
     border: darkblue 1px solid;
     margin-top: 6rem;
 
+    .h-100vh {
+      height: 100vh;
+    }
+
     .containerProjects {} .containerCardsProjects .secondCard {
       margin: 0 3rem 3rem 3rem;
       
     }
 
+
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 

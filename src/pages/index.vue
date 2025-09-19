@@ -1,5 +1,4 @@
 <template>
-    <v-parallax src="@/assets/bgPortfolio.png">
         <v-container class="mainContainer w-100 d-flex flex-column pa-0 align-center"> 
             <nav class="navBar pl-5 pr-5 ma-0 w-100 d-flex justify-center">
                 <ul class="d-flex h-100 d-flex justify-space-evenly align-center ">
@@ -17,8 +16,8 @@
                     </li>
                 </ul>
             </nav>
-            <v-container class="indexContainer">
-                <v-container class="containerProjects pa-0">
+            <v-container class="indexContainer pa-0">
+                <v-container class="containerProjects h-100vh pa-0">
                     <div class="d-flex justify-center">
                         <h1 class="h1IndexTitles">Projetos</h1>
                     </div>
@@ -33,11 +32,24 @@
                             <project-card/>
                         </div>
                     </v-container>
-                    
+                </v-container>
+                <v-container class="containerAbout h-100vh pa-0">
+                    <div class="d-flex justify-center">
+                        <h1 class="h1IndexTitles">Sobre Min</h1>
+                    </div>
+                </v-container>
+                <v-container class="containerskill h-100vh pa-0">
+                    <div class="d-flex justify-center">
+                        <h1 class="h1IndexTitles">Habilidades</h1>
+                    </div>
+                </v-container>
+                <v-container class="containercontact h-100vh pa-0">
+                    <div class="d-flex justify-center">
+                        <h1 class="h1IndexTitles">Contato</h1>
+                    </div>
                 </v-container>
             </v-container>
         </v-container>
-    </v-parallax>
 </template>
 <script setup>
 
