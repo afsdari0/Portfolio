@@ -24,30 +24,43 @@
       background-color: #0D0D0D ;
       border-radius: 100px;
 
+      .ulBtn {
+        color: #cfd8dc; // cor padrão
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
 
-      li {
-        list-style: none;
-        margin-right: 1rem;
+        &:hover {
+          background: linear-gradient(
+            270deg,
+            #4ECCA3,
+            #5B6FFF,
+            #4ECCA3
+          ); // repete as cores para looping suave
+          background-size: 200% 200%;
+          animation: gradientMove 3s linear infinite;
 
-
-        .navbarItens {
-          font-size: 1.1rem;
-          padding: 0.4rem 0.7rem;
-          background-color: rgba(v.$colorLinksBotoesIcones, 0.3);
-          border-radius: 24px;
-          opacity: 0.7;
-          transition: opacity 0.5s ease;
-          cursor: pointer;
-  
-          &:hover {
-            opacity: 1;
-          }
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-shadow: 0 0 8px rgba(94, 215, 187, 0.4);
         }
       }
 
-      .firstLi {
-        margin-left: 1rem;
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
+      
     }
   }
 
@@ -63,6 +76,37 @@
       margin: 0 3rem 3rem 3rem;
       
     }
+
+    .containerAbout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+
+  
+
+  .about-content {
+    max-width: 800px;
+    text-align: center;
+    line-height: 1.7;
+    color: #cfd8dc;
+    font-size: 1.1rem;
+
+    p {
+      margin-bottom: 1.2rem;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    strong {
+      color: #4ECCA3;
+    }
+  }
+}
 
 
   }
@@ -81,8 +125,22 @@
 }
 
 .h1IndexTitles {
-  border-bottom: 2px solid rgba(59, 130, 246, 0.5);
-  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.7);
+  font-size: 2.2rem;
+    font-weight: 700;
+    color: #e8f1f2;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      margin: 8px auto 0;
+      background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+      border-radius: 4px;
+    }
 }
 
 .cardContainer {
