@@ -69,10 +69,10 @@
     margin-top: 6rem;
 
     .h-100vh {
-      height: 100vh;
+      height: 90vh;
     }
 
-    .containerProjects {} .containerCardsProjects .secondCard {
+    .containerProjects .containerCardsProjects .secondCard {
       margin: 0 3rem 3rem 3rem;
       
     }
@@ -88,6 +88,7 @@
 
   .about-content {
     max-width: 800px;
+    width: 100%;
     text-align: center;
     line-height: 1.7;
     color: #cfd8dc;
@@ -170,4 +171,10 @@
     height: 35%;
     background-color: v.$colorFundo;
   }
+}
+
+
+
+.teste {
+  border: yellow 1px solid;
 }
