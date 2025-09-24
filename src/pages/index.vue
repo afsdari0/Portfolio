@@ -63,8 +63,45 @@
                     <div class="d-flex justify-center">
                         <h1 class="h1IndexTitles">Habilidades</h1>
                     </div>
-                    <v-container>
-                        
+                    <v-container class="skills-section py-12">
+                        <v-row justify="center" class="skills-grid">
+                            <v-col cols="6" sm="4" md="3" lg="2" v-for="(skill, i) in skills" :key="i">
+                                <v-card
+                                    class="skill-preview d-flex flex-column align-center justify-center"
+                                    @click="openSkill(skill)"
+                                >
+                                    <v-icon :icon="skill.icon" size="48" class="skill-icon"></v-icon>
+                                    <span class="skill-name">{{ skill.name }}</span>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+
+                        <v-dialog v-model="dialog" max-width="500">
+                            <v-card class="skill-dialog pa-6">
+                                <div class="d-flex align-center mb-4">
+                                    <v-icon :icon="selectedSkill?.icon" size="48" class="mr-3 skill-icon"></v-icon>
+                                    <h2 class="skill-title">{{ selectedSkill?.name }}</h2>
+                                </div>
+                                <v-progress-linear
+                                    v-if="selectedSkill"
+                                    :model-value="selectedSkill.level"
+                                    height="10"
+                                    rounded
+                                    class="skill-bar mb-6"
+                                ></v-progress-linear>
+                                <div class="cert-buttons d-flex flex-wrap ga-3">
+                                    <v-btn
+                                        v-for="(cert, i) in selectedSkill?.certifications"
+                                        :key="i"
+                                        :href="cert.link"
+                                        target="_blank"
+                                        class="cert-btn"
+                                    >
+                                        {{ cert.name }}
+                                    </v-btn>
+                                </div>
+                            </v-card>
+                        </v-dialog>
                     </v-container>
                 </v-container>
                 <v-container id="contato" class="containercontact h-100vh pa-0">
@@ -82,7 +119,7 @@
 
 const scrollToSection = (id) => {
     const indexContainer = document.getElementById(id);
-    const navbarHeight = 100;
+    const navbarHeight = 90;
     if (indexContainer) {
         const yOffset = -navbarHeight
         const y = indexContainer.getBoundingClientRect().top + window.pageYOffset + yOffset
@@ -93,4 +130,43 @@ const scrollToSection = (id) => {
     }
 };
 
+import { ref } from "vue"
+
+const dialog = ref(false)
+const selectedSkill = ref(null)
+
+const skills = [
+    {
+        name: "Vue.js",
+        icon: "mdi-vuejs",
+        level: 90,
+        certifications: [
+        { name: "Vue Mastery", link: "https://vuemastery.com" },
+        { name: "Frontend Mentor", link: "https://frontendmentor.io" }
+        ]
+    },
+    {
+        name: "Vuetify",
+        icon: "mdi-vuetify",
+        level: 85,
+        certifications: [
+        { name: "Vuetify Pro", link: "#" }
+        ]
+    },
+    {
+        name: "JavaScript",
+        icon: "mdi-language-javascript",
+        level: 95,
+        certifications: [
+        { name: "FreeCodeCamp", link: "https://freecodecamp.org" }
+        ]
+    }
+]
+
+const openSkill = (skill) => {
+    selectedSkill.value = skill
+    dialog.value = true
+}
 </script>
+
+

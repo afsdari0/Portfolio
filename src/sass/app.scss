@@ -66,10 +66,10 @@
 
   .indexContainer {
     border: darkblue 1px solid;
-    margin-top: 6rem;
+    margin-top: 5.5rem;
 
     .h-100vh {
-      height: 90vh;
+      min-height: 90vh;
     }
 
     .containerProjects .containerCardsProjects .secondCard {
@@ -84,30 +84,29 @@
       align-items: center;
       padding: 4rem 2rem;
 
-  
 
-  .about-content {
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
-    line-height: 1.7;
-    color: #cfd8dc;
-    font-size: 1.1rem;
-
-    p {
-      margin-bottom: 1.2rem;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: translateY(-2px);
+      .about-content {
+        max-width: 800px;
+        width: 100%;
+        text-align: center;
+        line-height: 1.7;
+        color: #cfd8dc;
+        font-size: 1.1rem;
+    
+        p {
+          margin-bottom: 1.2rem;
+          transition: transform 0.3s ease;
+    
+          &:hover {
+            transform: translateY(-2px);
+          }
+        }
+    
+        strong {
+          color: #4ECCA3;
+        }
       }
     }
-
-    strong {
-      color: #4ECCA3;
-    }
-  }
-}
 
 
   }
@@ -150,13 +149,13 @@
   cursor: pointer;
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.08); // quase invisível
+  border: 2px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-6px); /* dá o efeito de flutuar */
-    border: 2px solid rgba(59, 130, 246, 0.5); // azul com opacidade
+    transform: translateY(-6px);
+    border: 2px solid rgba(59, 130, 246, 0.5);
     box-shadow: 
       0 12px 25px rgba(59, 130, 246, 0.2),
       0 4px 10px rgba(0, 0, 0, 0.6);
@@ -177,4 +176,128 @@
 
 .teste {
   border: yellow 1px solid;
+}
+
+
+    //MODIFICAR DEPOIS
+
+.skill-preview {
+    position: relative;
+  background: rgba(15, 20, 40, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: 2px solid transparent;
+  .skill-icon {
+  color: #5B6FFF;
+  }
+  .skill-name {
+    opacity: 0.7;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+    transition: opacity 0.3s ease;
+  }
+  &:hover {
+    transform: translateY(-8px);
+    transform: translateY(-6px);
+    box-shadow: 
+      0 12px 25px rgba(59, 130, 246, 0.2),
+      0 4px 10px rgba(0, 0, 0, 0.6);
+      
+    .skill-icon {
+        background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+        background-size: 300% 300%;
+        animation: glowMove 6s linear infinite;
+        -webkit-background-clip: text;  
+        background-clip: text;
+        color: transparent;
+        @supports not (-webkit-background-clip: text) {
+        color: #4ECCA3;
+        }
+    }
+    .skill-name {
+        opacity: 1;
+    }
+
+
+    &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px; /* espessura do glow */
+    background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+    background-size: 300% 300%;
+    animation: glowMove 6s linear infinite;
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  }
+
+  
+}
+
+@keyframes glowMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.skill-dialog {
+  background: rgba(15, 20, 40, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.skill-title {
+  font-weight: 700;
+  color: #fff;
+}
+
+.skill-bar {
+  background: rgba(255, 255, 255, 0.1);
+  :deep(.v-progress-linear__determinate) {
+    
+    background-image: linear-gradient(
+    to right,
+    #4ECCA3,
+    #5B6FFF,
+    #4ECCA3
+    ) !important;
+    background-size: 200% 100% !important;
+    animation: toRight 3s linear infinite !important;
+  }
+}
+
+@keyframes toRight {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -200% 0%;
+  }
+}
+
+.cert-btn {
+  background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  text-transform: none;
+  &:hover {
+    filter: brightness(1.1);
+  }
 }
