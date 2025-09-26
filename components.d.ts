@@ -14,5 +14,6 @@ declare module 'vue' {
     ProjectCard: typeof import('./src/components/projectCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SocialIcons: typeof import('./src/components/socialIcons.vue')['default']
   }
 }

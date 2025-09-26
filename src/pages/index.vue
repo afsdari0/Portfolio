@@ -79,7 +79,7 @@
                         <v-dialog v-model="dialog" max-width="500">
                             <v-card class="skill-dialog pa-6">
                                 <div class="d-flex align-center mb-4">
-                                    <v-icon :icon="selectedSkill?.icon" size="48" class="mr-3 skill-icon"></v-icon>
+                                    <v-icon :icon="selectedSkill?.icon" size="48" class="mr-3 dialog-skill-icon"></v-icon>
                                     <h2 class="skill-title">{{ selectedSkill?.name }}</h2>
                                 </div>
                                 <v-progress-linear
@@ -88,6 +88,7 @@
                                     height="10"
                                     rounded
                                     class="skill-bar mb-6"
+                                    color="primary"
                                 ></v-progress-linear>
                                 <div class="cert-buttons d-flex flex-wrap ga-3">
                                     <v-btn
@@ -108,7 +109,31 @@
                     <div class="d-flex justify-center">
                         <h1 class="h1IndexTitles">Contato</h1>
                     </div>
-                    <v-container>
+                    <v-container class="contact-wrapper">
+                       <v-form v-model="valid" class="contact-form">
+                            <v-text-field
+                                label="Seu nome"
+                                outlined dense
+                                color="primary"
+                                class="glow-input" />
+                            <v-text-field
+                                label="Seu Email"
+                                outlined dense
+                                color="primary"
+                                class="glow-input" 
+                                required/>
+                            <v-textarea
+                                label="Mensagem"
+                                outlined dense
+                                color="primary"
+                                class="glow-input"
+                                rows="4"
+                                required/>
+                            <div class="d-flex w-100 justify-space-between ">
+                                <v-btn class="glow-btn mt-4 d-flex justfy-center align-center" @click="sendMessage">Enviar</v-btn>
+                                <social-icons/>
+                            </div>
+                        </v-form>
                         
                     </v-container>
                 </v-container>
@@ -116,6 +141,8 @@
         </v-container>
 </template>
 <script setup>
+
+import { ref } from "vue"
 
 const scrollToSection = (id) => {
     const indexContainer = document.getElementById(id);
@@ -129,8 +156,6 @@ const scrollToSection = (id) => {
         });
     }
 };
-
-import { ref } from "vue"
 
 const dialog = ref(false)
 const selectedSkill = ref(null)
@@ -167,6 +192,27 @@ const openSkill = (skill) => {
     selectedSkill.value = skill
     dialog.value = true
 }
+
+const valid = ref(false);
+const form = ref({
+    name: "",
+    email: "",
+    message: "",
+    replyEmail: "",
+});
+
+const links = {
+    whatsapp: "https://wa.me/",
+    linkedin: "https://linkedin.com/in/",
+    github: "https://github.com/",
+};
+
+function sendMessage() {
+    if (!form.value.name || !form.value.email || !form.value.message) {
+        alert("Por favor, preencha todos os campos obrigatórios!");
+        return;
+    }
+    console.log("Mensagem enviada:", form.value);
+    alert("Mensagem enviada com sucesso!");
+}
 </script>
-
-

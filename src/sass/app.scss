@@ -25,7 +25,7 @@
       border-radius: 100px;
 
       .ulBtn {
-        color: #cfd8dc; // cor padrão
+        color: #cfd8dc;
         font-weight: 500;
         transition: all 0.3s ease;
         position: relative;
@@ -38,7 +38,7 @@
             #4ECCA3,
             #5B6FFF,
             #4ECCA3
-          ); // repete as cores para looping suave
+          );
           background-size: 200% 200%;
           animation: gradientMove 3s linear infinite;
 
@@ -107,7 +107,6 @@
         }
       }
     }
-
 
   }
 }
@@ -179,7 +178,7 @@
 }
 
 
-    //MODIFICAR DEPOIS
+    //skills section
 
 .skill-preview {
     position: relative;
@@ -210,15 +209,14 @@
       0 4px 10px rgba(0, 0, 0, 0.6);
       
     .skill-icon {
-        background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
-        background-size: 300% 300%;
-        animation: glowMove 6s linear infinite;
-        -webkit-background-clip: text;  
-        background-clip: text;
-        color: transparent;
-        @supports not (-webkit-background-clip: text) {
-        color: #4ECCA3;
-        }
+      background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+      background-size: 300% 300%;
+      animation: glowMove 6s linear infinite;
+      -webkit-background-clip: text;  
+      background-clip: text;
+      color: transparent;
+      @supports not (-webkit-background-clip: text) {
+    }
     }
     .skill-name {
         opacity: 1;
@@ -230,7 +228,7 @@
     position: absolute;
     inset: 0;
     border-radius: 16px;
-    padding: 2px; /* espessura do glow */
+    padding: 2px;
     background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
     background-size: 300% 300%;
     animation: glowMove 6s linear infinite;
@@ -243,16 +241,10 @@
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
     pointer-events: none;
-  }
-  }
 
+  }
+  }
   
-}
-
-@keyframes glowMove {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 .skill-dialog {
@@ -262,6 +254,22 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
 }
 
+.dialog-skill-icon {
+  background-image: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+      background-size: 300% 300%;
+      animation: glowMove 6s linear infinite;
+      -webkit-background-clip: text;  
+      background-clip: text;
+      color: transparent;
+      @supports not (-webkit-background-clip: text) {}
+}
+
+@keyframes glowMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .skill-title {
   font-weight: 700;
   color: #fff;
@@ -269,16 +277,9 @@
 
 .skill-bar {
   background: rgba(255, 255, 255, 0.1);
-  :deep(.v-progress-linear__determinate) {
-    
-    background-image: linear-gradient(
-    to right,
-    #4ECCA3,
-    #5B6FFF,
-    #4ECCA3
-    ) !important;
-    background-size: 200% 100% !important;
-    animation: toRight 3s linear infinite !important;
+  
+  :deep(.v-progress-linear__determinate .v-progress-linear__indeterminate) {
+    background-color: #4ECCA3 !important;
   }
 }
 
@@ -287,7 +288,7 @@
     background-position: 0% 0%;
   }
   to {
-    background-position: -200% 0%;
+    background-position: -100% 0%;
   }
 }
 
@@ -300,4 +301,89 @@
   &:hover {
     filter: brightness(1.1);
   }
+}   
+
+
+    //About section
+
+
+.contact-section {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #fff;
+  position: relative;
+}
+
+.contact-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.glow-input .v-field {
+  border-radius: 12px;
+  background: rgba(15, 20, 40, 0.8);
+}
+
+.glow-btn {
+  border-radius: 12px;
+  padding: 0.9rem 3rem;
+  font-weight: 600;
+  color: white;
+  background: rgba(15, 20, 40, 0.9);
+  border: 1px solid #cfd8dc;
+  position: relative;
+  overflow: hidden; 
+
+  &:hover {
+    transform: scale(1.05);
+    border: 1px solid transparent;
+    box-shadow: 
+      0 12px 25px rgba(59, 130, 246, 0.2),
+      0 4px 10px rgba(0, 0, 0, 0.6);
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 2px;
+        background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+        background-size: 300% 300%;
+        animation: glowMove 5s linear infinite;
+        mask: 
+        linear-gradient(#fff 0 0) content-box, 
+          linear-gradient(#fff 0 0);
+        -webkit-mask: 
+          linear-gradient(#fff 0 0) content-box, 
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        pointer-events: none;
+  }
+  }
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  .social-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes glowMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
