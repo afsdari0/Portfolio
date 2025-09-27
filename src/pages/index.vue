@@ -1,8 +1,8 @@
 <template>
         <v-container class="mainContainer w-100 d-flex flex-column pa-0 align-center"> 
-            <nav class="navBar pl-5 pr-5 ma-0 w-100 d-flex justify-center">
-                <ul class="d-flex h-100 pl-5 pr-5 ga-3 d-flex justify-space-evenly align-center ">
-                <v-btn class="ulBtn pa-2 " @click="scrollToSection('projetos')">
+            <nav class="navBar pa-0 ma-0 d-flex justify-center align-center">
+                <ul class="d-flex h-100 d-flex justify-space-evenly align-center ">
+                    <v-btn class="ulBtn pa-2 " @click="scrollToSection('projetos')">
                         Projetos
                     </v-btn>
                     <v-btn class="ulBtn pa-2" @click="scrollToSection('sobre')">
@@ -18,24 +18,16 @@
             </nav>
             <v-container class="indexContainer pa-0">
                 <v-container id="projetos" class="containerProjects h-100vh pa-0">
-                    <div class="d-flex justify-center">
-                        <h1 class="h1IndexTitles">Projetos</h1>
+                    <div class="d-flex justify-center ">
+                        <h1 class="h1IndexTitless">Projetos</h1>
                     </div>
-                    <v-container class="containerCardsProjects pt-7 d-flex w100% justify-center align-center">
-                        <div class="d-flex">
-                            <project-card/>
-                        </div>
-                        <div class="d-flex secondCard">
-                            <project-card/>
-                        </div>
-                        <div class="d-flex">
-                            <project-card/>
-                        </div>
+                    <v-container class="w-100 h-100 ">
+                        <carouselProjects/>
                     </v-container>
                 </v-container>
                 <v-container id="sobre" class="containerAbout h-100vh pa-0 teste">
-                    <div class="d-flex justify-center">
-                        <h1 class="h1IndexTitles">Sobre Min</h1>
+                    <div class="d-flex justify-center ">
+                        <h1 class="h1IndexTitless">Sobre Min</h1>
                     </div>
                     <v-container class="w-100 h-100 d-flex justify-center align-center">
                         <div class="about-content">
@@ -60,8 +52,8 @@
                     </v-container>
                 </v-container>
                 <v-container id="habilidades" class="containerskill h-100vh pa-0">
-                    <div class="d-flex justify-center">
-                        <h1 class="h1IndexTitles">Habilidades</h1>
+                    <div class="d-flex justify-center ">
+                        <h1 class="h1IndexTitless">Habilidades</h1>
                     </div>
                     <v-container class="skills-section py-12">
                         <v-row justify="center" class="skills-grid">
@@ -107,7 +99,7 @@
                 </v-container>
                 <v-container id="contato" class="containercontact h-100vh pa-0">
                     <div class="d-flex justify-center">
-                        <h1 class="h1IndexTitles">Contato</h1>
+                        <h1 class="h1IndexTitless">Contato</h1>
                     </div>
                     <v-container class="contact-wrapper">
                        <v-form v-model="valid" class="contact-form">
@@ -141,6 +133,7 @@
         </v-container>
 </template>
 <script setup>
+import carouselProjects from "@/components/carouselProjects.vue";
 
 import { ref } from "vue"
 

@@ -23,14 +23,21 @@
     ul {
       background-color: #0D0D0D ;
       border-radius: 100px;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 20, 40, 0.6);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      padding: 0.8rem;
+      gap: 0.8rem;
 
       .ulBtn {
-        color: #cfd8dc;
-        font-weight: 500;
-        transition: all 0.3s ease;
         position: relative;
-        overflow: hidden;
+        font-weight: 500;
+        color: #fff;
         border-radius: 20px;
+        background: rgba(13, 13, 13, 0.8);
+        backdrop-filter: blur(10px);
+        border: none;
+        padding: 0.5rem 1.2rem;     
 
         &:hover {
           background: linear-gradient(
@@ -41,11 +48,10 @@
           );
           background-size: 200% 200%;
           animation: gradientMove 3s linear infinite;
-
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          text-shadow: 0 0 8px rgba(94, 215, 187, 0.4);
+          text-shadow: 0 0 8px rgba(181, 223, 213, 0.4);
         }
       }
 
@@ -72,9 +78,9 @@
       min-height: 90vh;
     }
 
-    .containerProjects .containerCardsProjects .secondCard {
-      margin: 0 3rem 3rem 3rem;
-      
+    .containerCardsProjects {
+      height: 100%;
+      width: 100%;
     }
 
     .containerAbout {
@@ -90,7 +96,7 @@
         width: 100%;
         text-align: center;
         line-height: 1.7;
-        color: #cfd8dc;
+        color: #fff;
         font-size: 1.1rem;
     
         p {
@@ -123,10 +129,10 @@
   }
 }
 
-.h1IndexTitles {
+.h1IndexTitless {
   font-size: 2.2rem;
     font-weight: 700;
-    color: #e8f1f2;
+    color: #fff;
     text-align: center;
     margin-bottom: 2rem;
     position: relative;
@@ -174,7 +180,7 @@
 
 
 .teste {
-  border: yellow 1px solid;
+  border: yellow 2px solid;
 }
 
 
@@ -386,4 +392,31 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+
+
+
+@media (max-width: 768px) {
+
+  .navBar {
+    ul {
+      padding: 0.3rem;
+      gap: 0.5rem !important ;
+      
+      .ulBtn {
+        position: relative;
+        font-weight: 50;
+        color: #fff;
+        font-size: x-small;
+        border-radius: 20px;
+        background: rgba(13, 13, 13, 0.8);
+        backdrop-filter: blur(10px);
+        border: none;
+        padding: 0.2rem 0.4rem;     
+      }
+    }
+  }
+
+    
 }

@@ -8,9 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Carrossel: typeof import('./src/components/CurvedCarousel.vue')['default']
-    CurvedCarousel: typeof import('./src/components/CurvedCarousel.vue')['default']
-    Navigation: typeof import('./src/components/navigation.vue')['default']
+    CarouselProjects: typeof import('./src/components/carouselProjects.vue')['default']
     ProjectCard: typeof import('./src/components/projectCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
