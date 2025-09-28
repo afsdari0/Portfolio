@@ -1,14 +1,13 @@
 <template>
   <v-defaults-provider :defaults="{ VBtn: { variant: 'outlined', color: '#eee' } }">
-    <v-sheet class="overflow-hidden" max-width="700" rounded="xl">
+    <v-sheet class="overflow-hidden" rounded="xl">
       <v-carousel
         v-model="currentIndex"
         direction="vertical"
-        height="400"
-        progress="red"
         vertical-arrows="left"
         vertical-delimiters="right"
         hide-delimiter-background
+        class="carouselProjects"
       >
         <v-carousel-item
           v-for="(item, i) in items"

@@ -1,6 +1,11 @@
 @use "variables" as v;
 
 
+.appBg {
+  background: linear-gradient(-45deg, #0A0F1E, #121826, #1D2A44, #0A0F1E);
+  background-size: 300% 300%;
+  animation: gradientShift 20s ease infinite;
+}
 
 .containerApp {
   border: red 1px solid;
@@ -9,9 +14,6 @@
 .mainContainer {
   border: green 1px solid;
   max-width: 1920px !important;
-  background: linear-gradient(-45deg, #0A0F1E, #121826, #1D2A44, #0A0F1E);
-  background-size: 300% 300%;
-  animation: gradientShift 20s ease infinite;
 
   .navBar {
     border: palegoldenrod 1px solid;
@@ -78,10 +80,19 @@
       min-height: 90vh;
     }
 
-    .containerCardsProjects {
-      height: 100%;
-      width: 100%;
+  .divIndexProjects {
+    gap: 2rem;
+
+    .divCarroselProjects {
+      margin-top: 2rem;
+      width: 50%;
+      .carouselProjects{
+        height:   300px !important;
+        width: 100% !important;
+      }
     }
+
+  }
 
     .containerAbout {
       display: flex;
@@ -417,6 +428,11 @@
       }
     }
   }
+
+  .divCarroselProjects {
+      width: 80% !important;
+      
+    }
 
     
 }

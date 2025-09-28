@@ -18,12 +18,15 @@
             </nav>
             <v-container class="indexContainer pa-0">
                 <v-container id="projetos" class="containerProjects h-100vh pa-0">
-                    <div class="d-flex justify-center ">
+                    <div class="d-flex teste justify-center ">
                         <h1 class="h1IndexTitless">Projetos</h1>
                     </div>
-                    <v-container class="w-100 h-100 ">
-                        <carouselProjects/>
-                    </v-container>
+                    <div class="teste divIndexProjects d-flex justify-center align-center flex-column">
+                        <div class="divCarroselProjects">
+                            <carouselProjects/>
+                        </div>
+                        <v-btn color="success">text</v-btn>
+                    </div>
                 </v-container>
                 <v-container id="sobre" class="containerAbout h-100vh pa-0 teste">
                     <div class="d-flex justify-center ">
