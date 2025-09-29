@@ -25,7 +25,7 @@
                         <div class="divCarroselProjects">
                             <carouselProjects/>
                         </div>
-                        <v-btn color="success">text</v-btn>
+                        <v-btn class="glow-btn mb-5 mt-4 d-flex justfy-center align-center" @click="$router.push('/allProjects')">Listagem Completa</v-btn>
                     </div>
                 </v-container>
                 <v-container id="sobre" class="containerAbout h-100vh pa-0 teste">
@@ -105,7 +105,7 @@
                         <h1 class="h1IndexTitless">Contato</h1>
                     </div>
                     <v-container class="contact-wrapper">
-                       <v-form v-model="valid" class="contact-form">
+                        <v-form v-model="valid" class="contact-form">
                             <v-text-field
                                 label="Seu nome"
                                 outlined dense
@@ -133,6 +133,7 @@
                     </v-container>
                 </v-container>
             </v-container>
+            <Footer/>
         </v-container>
 </template>
 <script setup>

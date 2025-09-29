@@ -7,20 +7,17 @@
   animation: gradientShift 20s ease infinite;
 }
 
-.containerApp {
-  border: red 1px solid;
-}
-
 .mainContainer {
   border: green 1px solid;
   max-width: 1920px !important;
+  min-height: 96vh;
 
   .navBar {
     border: palegoldenrod 1px solid;
     height: 4rem;
     margin-top: 1rem !important;
     position: fixed;
-    z-index: 10;
+    z-index: 5000;
 
     ul {
       background-color: #0D0D0D ;
@@ -89,6 +86,10 @@
       .carouselProjects{
         height:   300px !important;
         width: 100% !important;
+
+        .titleTechCarousel {
+          padding: 0.6rem 1.3rem !important;
+        }
       }
     }
 
@@ -100,7 +101,6 @@
       justify-content: center;
       align-items: center;
       padding: 4rem 2rem;
-
 
       .about-content {
         max-width: 800px;
@@ -188,12 +188,9 @@
   }
 }
 
-
-
 .teste {
   border: yellow 2px solid;
 }
-
 
     //skills section
 
@@ -399,6 +396,16 @@
   }
 }
 
+footer {
+  margin-top: auto;
+  width: 100%;
+  background: #1D2A44;
+  
+  .footerContainer {
+    height: 4vh;
+  }
+}
+
 @keyframes glowMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -406,6 +413,19 @@
 }
 
 
+.textSubtitleProjectsPage {
+  border-bottom: 2rem;
+  
+  &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      margin: 8px auto 0;
+      background: linear-gradient(90deg, #4ECCA3, #5B6FFF);
+      border-radius: 4px;
+    }
+}
 
 
 @media (max-width: 768px) {

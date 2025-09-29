@@ -27,22 +27,15 @@
           <v-scroll-x-transition mode="out-in" appear>
             <v-sheet
               :key="currentIndex"
-              rounded="xl"
+              rounded="lg"
             >
               <v-list-item
-                :prepend-avatar="`https://randomuser.me/api/portraits/${currentItem.avatarId}.jpg`"
-                :subtitle="currentItem.subtitle"
-                :title="currentItem.authorName"
-                class="pa-1 pr-6"
+                :subtitle="currentItem.tech"
+                :title="currentItem.projectTitle"
+                class="titleTechCarousel"
               ></v-list-item>
             </v-sheet>
           </v-scroll-x-transition>
-          <v-chip
-            :text="`${ currentIndex + 1 } / ${items.length }`"
-            color="#eee"
-            size="small"
-            variant="flat"
-          ></v-chip>
         </v-overlay>
       </v-carousel>
     </v-sheet>
@@ -56,27 +49,23 @@ import { shallowRef, toRef } from 'vue'
   const currentItem = toRef(() => items[currentIndex.value])
   const items = [
     {
-      authorName: 'Bettany Nichols',
-      avatarId: 'women/31',
-      subtitle: '31k followers',
+      projectTitle: 'Bettany Nichols',
+      tech: '31k followers',
       src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
     },
     {
-      authorName: 'Greg Kovalsky',
-      avatarId: 'men/61',
-      subtitle: '412 followers',
+      projectTitle: 'Greg Kovalsky',
+      tech: '412 followers',
       src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
     },
     {
-      authorName: 'Emma Kathleen',
-      avatarId: 'women/34',
-      subtitle: '521 followers',
+      projectTitle: 'Emma Kathleen',
+      tech: '521 followers',
       src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
     },
     {
-      authorName: 'Anthony McKenzie',
-      avatarId: 'men/78',
-      subtitle: '6k followers',
+      projectTitle: 'Anthony McKenzie',
+      tech: '6k followers',
       src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
     },
   ]
