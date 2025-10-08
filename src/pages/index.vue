@@ -60,7 +60,7 @@
                     </div>
                     <v-container class="skills-section py-12">
                         <v-row justify="center" class="skills-grid">
-                            <v-col cols="6" sm="4" md="3" lg="2" v-for="(skill, i) in skills" :key="i">
+                            <v-col cols="6" sm="4" md="3" lg="2" v-for="(skill, id) in skills" :key="id">
                                 <v-card
                                     class="skill-preview d-flex flex-column align-center justify-center"
                                     @click="openSkill(skill)"
@@ -71,7 +71,7 @@
                             </v-col>
                         </v-row>
 
-                        <v-dialog v-model="dialog" max-width="500">
+                        <v-dialog v-model="dialogSkills" max-width="500">
                             <v-card class="skill-dialog pa-6">
                                 <div class="d-flex align-center mb-4">
                                     <v-icon :icon="selectedSkill?.icon" size="48" class="mr-3 dialog-skill-icon"></v-icon>
@@ -154,7 +154,7 @@ const scrollToSection = (id) => {
     }
 };
 
-const dialog = ref(false)
+const dialogSkills = ref(false)
 const selectedSkill = ref(null)
 
 const skills = [

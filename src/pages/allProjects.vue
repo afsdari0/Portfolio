@@ -18,7 +18,7 @@
             </nav>
             <v-container class="indexContainer pa-0">
                 <div class="text-center mb-6 mt-6">
-                    <h1 class="text-h3 font-weight-bold text-white">Todos os Projetos</h1>
+                    <h1 class="text-h3 font-weight-bold text-white">Meus Projetos</h1>
                     <p class="textSubtitleProjectsPage text-grey-lighten-1">
                         Explore todos os meus trabalhos
                     </p>
