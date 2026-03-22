@@ -14,12 +14,30 @@ const router = createRouter({
 
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition            // Volta à posição salva (quando usa "voltar")
+      return savedPosition
     }
     if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' } // Rola até o ID
+      // Aguarda o DOM da página destino (SPA + transição) antes de rolar até a âncora
+      return new Promise((resolve) => {
+        const tryScroll = () => {
+          const el = document.querySelector(to.hash)
+          if (el) {
+            resolve({ el: to.hash, behavior: 'smooth' })
+            return true
+          }
+          return false
+        }
+        if (tryScroll()) return
+        requestAnimationFrame(() => {
+          if (tryScroll()) return
+          setTimeout(() => {
+            if (tryScroll()) return
+            resolve({ top: 0, behavior: 'smooth' })
+          }, 120)
+        })
+      })
     }
-    return { top: 0 }                  // Se não tiver hash, vai pro topo
+    return { top: 0, behavior: 'smooth' }
   },
 })
 

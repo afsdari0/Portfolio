@@ -1,34 +1,20 @@
 <template>
-    <v-container class="mainContainer w-100 d-flex flex-column pa-0 align-center">  
-        <nav class="navBar pa-0 ma-0 d-flex justify-center align-center">
-                <ul class="d-flex h-100 d-flex justify-space-evenly align-center ">
-                    <v-btn class="ulBtn pa-2 " :to="{path:'/', hash:'#projetos'}">
-                        Projetos
-                    </v-btn>
-                    <v-btn class="ulBtn pa-2" :to="{path:'/', hash:'#sobre'}">
-                        Sobre Mim
-                    </v-btn>
-                    <v-btn class="ulBtn pa-2" :to="{path:'/', hash:'#habilidades'}">
-                        Habilidades
-                    </v-btn>
-                    <v-btn class="ulBtn pa-2" :to="{path:'/', hash:'#contato'}">
-                        Contato
-                    </v-btn>
-                </ul>
-            </nav>
-            <v-container class="indexContainer pa-0">
-                <div class="text-center mb-6 mt-6">
-                    <h1 class="text-h3 font-weight-bold text-white">Meus Projetos</h1>
-                    <p class="textSubtitleProjectsPage text-grey-lighten-1">
-                        Explore todos os meus trabalhos
-                    </p>
-                </div>
-                
-                <ProjectCard/>
-                
-            </v-container> 
+  <v-container class="mainContainer w-100 d-flex flex-column pa-0 align-center">
+    <SiteNav />
+
+    <v-container class="indexContainer all-projects-page pa-0">
+      <main class="index-main all-projects-main">
+        <section class="all-projects-hero" aria-labelledby="all-projects-heading">
+          <h1 id="all-projects-heading" class="h1IndexTitless all-projects-title">Meus projetos</h1>
+          <p class="textSubtitleProjectsPage text-body-2 text-medium-emphasis mt-2 mb-8">
+            Explore todos os trabalhos e filtros por categoria.
+          </p>
+        </section>
+        <ProjectCard />
+      </main>
     </v-container>
-    <Footer/>
+  </v-container>
+  <Footer />
 </template>
-<script setup>
-</script>
+
+<script setup></script>
