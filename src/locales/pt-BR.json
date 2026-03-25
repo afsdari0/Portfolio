@@ -57,7 +57,8 @@
     "messageLabel": "Mensagem",
     "send": "Enviar",
     "fillAll": "Por favor, preencha todos os campos obrigatórios!",
-    "sent": "Mensagem enviada com sucesso!"
+    "sent": "Mensagem enviada com sucesso!",
+    "error": "Erro ao enviar mensagem. Tente novamente."
   },
   "allProjects": {
     "title": "Meus projetos",

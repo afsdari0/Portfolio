@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppToast: typeof import('./src/components/AppToast.vue')['default']
     CarouselProjects: typeof import('./src/components/carouselProjects.vue')['default']
     DialogProjects: typeof import('./src/components/dialogProjects.vue')['default']
     Footer: typeof import('./src/components/footer.vue')['default']

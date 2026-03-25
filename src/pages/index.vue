@@ -264,7 +264,13 @@
                     hide-details="auto"
                     required
                   />
-                  <v-btn type="submit" class="glow-btn mt-4 contact-submit-btn" block>
+                  <v-btn
+                    type="submit"
+                    class="glow-btn mt-4 contact-submit-btn"
+                    block
+                    :loading="sending"
+                    :disabled="sending"
+                  >
                     {{ $t('contact.send') }}
                   </v-btn>
                 </v-form>
@@ -276,15 +282,23 @@
       </main>
     </v-container>
     <Footer />
+
+    <AppToast
+      v-model="snackbar.show"
+      :message="snackbar.message"
+      :color="snackbar.color"
+    />
   </v-container>
 </template>
 
 <script setup>
 import carouselProjects from "@/components/carouselProjects.vue"
+import AppToast from "@/components/AppToast.vue"
 import { ref, watch } from "vue"
 import { useDisplay } from "vuetify"
 import { useI18n } from "vue-i18n"
 import { useScrollAnimation } from "@/composables/useScrollAnimation"
+import emailjs from "@emailjs/browser"
 
 const { t } = useI18n()
 const { smAndDown } = useDisplay()
@@ -392,18 +406,37 @@ watch(dialogSkills, (open) => {
 
 /* ---- Formulário ---- */
 const valid = ref(false)
+const sending = ref(false)
+const snackbar = ref({ show: false, message: '', color: '' })
 const form = ref({
   name: "",
   email: "",
   message: "",
 })
 
-function sendMessage() {
+async function sendMessage() {
   if (!form.value.name || !form.value.email || !form.value.message) {
-    alert(t('contact.fillAll'))
+    snackbar.value = { show: true, message: t('contact.fillAll'), color: 'warning' }
     return
   }
-  console.log("Mensagem enviada:", form.value)
-  alert(t('contact.sent'))
+  sending.value = true
+  try {
+    await emailjs.send(
+      'service_x89w4ls',
+      'template_s5i5rv7',
+      {
+        from_name: form.value.name,
+        from_email: form.value.email,
+        message: form.value.message,
+      },
+      '_rvV2tsfCMC841Ccf'
+    )
+    snackbar.value = { show: true, message: t('contact.sent'), color: 'success' }
+    form.value = { name: '', email: '', message: '' }
+  } catch {
+    snackbar.value = { show: true, message: t('contact.error'), color: 'error' }
+  } finally {
+    sending.value = false
+  }
 }
 </script>

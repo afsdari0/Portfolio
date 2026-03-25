@@ -9,15 +9,15 @@
           class="all-projects-hero section-animate is-visible"
           aria-labelledby="all-projects-heading"
         >
-          <h1 id="all-projects-heading" class="h1IndexTitless all-projects-title">{{ $t('allProjects.title') }}</h1>
+.          <h1 id="all-projects-heading" class="h1IndexTitless all-projects-title">Meus projetos</h1>
           <p class="textSubtitleProjectsPage text-body-2 text-medium-emphasis mt-2 mb-4">
-            {{ $t('allProjects.subtitle') }}
+            Explore todos os trabalhos e filtre por categoria.
           </p>
 
           <!-- Stats de rank -->
           <div class="rank-stats" aria-label="Distribuição por rank">
             <span class="all-projects-total">
-              {{ projects.length }} {{ projects.length !== 1 ? $t('allProjects.projectCount', { count: projects.length }).split('|')[1]?.trim() || 'projects' : $t('allProjects.projectCount', { count: 1 }).split('|')[0]?.trim() || 'project' }}
+              {{ projects.length }} projeto{{ projects.length !== 1 ? 's' : '' }}
             </span>
             <template v-for="(meta, rank) in RANK_META" :key="rank">
               <span
@@ -41,11 +41,14 @@
 
 <script setup>
 import { computed } from "vue"
-import { useI18n } from "vue-i18n"
 import { projects } from "@/data/projects"
-import { RANK_META } from "@/data/rankMeta"
 
-const { t } = useI18n()
+const RANK_META = {
+  S: { icon: "mdi-crown",         label: "Lendário" },
+  A: { icon: "mdi-star",          label: "Épico"    },
+  B: { icon: "mdi-diamond-stone", label: "Raro"     },
+  C: { icon: "mdi-shield",        label: "Comum"    },
+}
 
 const rankCount = computed(() => {
   return projects.reduce((acc, p) => {
@@ -59,15 +62,7 @@ const rankCount = computed(() => {
 .all-projects-total {
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.04em;
-}
-
-.all-projects-title {
-  color: var(--text-primary);
-}
-
-.textSubtitleProjectsPage {
-  color: var(--text-secondary);
 }
 </style>
