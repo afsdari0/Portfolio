@@ -59,7 +59,7 @@
               >
                 mdi-gesture-tap
               </v-icon>
-              <span class="carousel-projects__hint-text">Toque para ver o projeto</span>
+              <span class="carousel-projects__hint-text">{{ $t('carousel.hint') }}</span>
               <v-icon
                 class="carousel-projects__hint-chevron"
                 size="16"
@@ -76,8 +76,11 @@
 
 <script setup>
 import { computed, shallowRef } from "vue"
+import { useI18n } from "vue-i18n"
 import { projects } from "@/data/projects"
 import { useDialogStore } from "@/stores/dialogProjects"
+
+const { t } = useI18n()
 
 const currentIndex = shallowRef(0)
 const dialog = useDialogStore()
@@ -87,21 +90,47 @@ const currentItem = computed(() => carouselItems.value[currentIndex.value] ?? nu
 
 <style scoped lang="scss">
 .carousel-projects-shell {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(15, 20, 40, 0.4);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   cursor: pointer;
   transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+  position: relative;
+
+  /* Rotating glow border */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      var(--accent-teal) 8%,
+      transparent 16%,
+      transparent 50%,
+      var(--accent-blue) 58%,
+      transparent 66%
+    );
+    z-index: -1;
+    opacity: 0;
+    animation: carouselGlowSpin 5s linear infinite;
+    transition: opacity 0.4s ease;
+  }
 
   &:hover {
-    border-color: rgba(78, 204, 163, 0.45);
+    border-color: var(--border-accent);
     box-shadow:
-      0 0 0 1px rgba(91, 111, 255, 0.2),
-      0 12px 40px rgba(0, 0, 0, 0.45);
+      0 0 0 1px var(--glow-blue),
+      0 12px 40px var(--shadow-heavy);
+
+    &::after {
+      opacity: 0.6;
+    }
   }
 
   &:focus-within {
-    outline: 2px solid rgba(78, 204, 163, 0.5);
+    outline: 2px solid var(--border-accent);
     outline-offset: 2px;
   }
 }
@@ -122,10 +151,15 @@ const currentItem = computed(() => carouselItems.value[currentIndex.value] ?? nu
 }
 
 .carousel-projects__info-sheet {
-  background: rgba(13, 17, 28, 0.72) !important;
+  background: var(--bg-glass) !important;
   backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border-subtle);
   pointer-events: none;
+}
+
+@keyframes carouselGlowSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .carousel-projects__list-item {

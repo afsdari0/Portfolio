@@ -38,29 +38,27 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .icon {
   width: 32px;
   height: 32px;
-  color: white;
-  opacity: 1 ;
-  transition: opacity 0.3s ease;
+  color: var(--text-secondary);
+  transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
 .social-link:hover {
   .icon {
-    color:#4ECCA3; 
+    color: var(--accent-teal);
+    filter: drop-shadow(0 0 8px var(--glow-teal));
+    animation: socialBounce 0.5s ease;
   }
 }
 
-@keyframes gradientMove {
-  from {
-    background-position: 0% 0%;
-  }
-  to {
-    background-position: 200% 0%;
-  }
+@keyframes socialBounce {
+  0%, 100% { transform: translateY(0); }
+  40%      { transform: translateY(-6px); }
+  60%      { transform: translateY(-3px); }
 }
-
 </style>

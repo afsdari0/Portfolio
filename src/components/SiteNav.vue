@@ -1,19 +1,19 @@
 <template>
   <header class="site-nav" role="banner">
     <div class="site-nav__bar">
-      <div class="site-nav__inner">
+      <div class="site-nav__inner" :class="{ 'site-nav__inner--scrolled': scrolled }">
         <button
           type="button"
           class="site-nav__brand"
-          aria-label="Ir para o início"
+          :aria-label="$t('nav.goToStart')"
           @click="onBrandClick"
         >
           <span class="site-nav__mark" aria-hidden="true">DR</span>
           <span class="site-nav__brand-text">Dario Ramos</span>
         </button>
 
-        <!-- Desktop: links + ação secundária -->
-        <nav v-if="isDesktop" class="site-nav__desktop" aria-label="Seções do portfólio">
+        <!-- Desktop: links + toggles + CTA -->
+        <nav v-if="isDesktop" class="site-nav__desktop" :aria-label="$t('nav.navigation')">
           <ul class="site-nav__list">
             <li v-for="item in navItems" :key="item.id">
               <button type="button" class="site-nav__link" @click="navigateTo(item.id)">
@@ -21,6 +21,37 @@
               </button>
             </li>
           </ul>
+
+          <!-- Locale toggle -->
+          <v-btn
+            icon
+            variant="text"
+            size="small"
+            class="site-nav__locale-toggle"
+            :aria-label="localeStore.locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
+            @click="localeStore.toggle()"
+          >
+            <span class="site-nav__locale-label">{{ localeStore.locale === 'pt-BR' ? 'EN' : 'PT' }}</span>
+          </v-btn>
+
+          <!-- Theme toggle -->
+          <v-btn
+            icon
+            variant="text"
+            size="small"
+            class="site-nav__theme-toggle"
+            :aria-label="themeStore.isDark ? $t('nav.switchToLight') : $t('nav.switchToDark')"
+            @click="themeStore.toggle()"
+          >
+            <v-icon
+              size="20"
+              class="site-nav__theme-icon"
+              :class="{ 'site-nav__theme-icon--spin': themeAnimating }"
+            >
+              {{ themeStore.isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}
+            </v-icon>
+          </v-btn>
+
           <v-btn
             class="site-nav__cta"
             variant="flat"
@@ -29,22 +60,52 @@
             :to="'/allProjects'"
           >
             <v-icon start size="18">mdi-view-grid-outline</v-icon>
-            Lista completa
+            {{ $t('nav.fullList') }}
           </v-btn>
         </nav>
 
-        <!-- Mobile: menu -->
-        <v-btn
-          v-if="!isDesktop"
-          class="site-nav__fab"
-          icon
-          variant="text"
-          aria-label="Abrir menu de navegação"
-          :aria-expanded="drawer"
-          @click="drawer = true"
-        >
-          <v-icon size="28">mdi-menu</v-icon>
-        </v-btn>
+        <!-- Mobile: toggles + menu -->
+        <div v-if="!isDesktop" class="d-flex align-center ga-1">
+          <!-- Locale toggle mobile -->
+          <v-btn
+            icon
+            variant="text"
+            size="small"
+            class="site-nav__locale-toggle"
+            :aria-label="localeStore.locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
+            @click="localeStore.toggle()"
+          >
+            <span class="site-nav__locale-label">{{ localeStore.locale === 'pt-BR' ? 'EN' : 'PT' }}</span>
+          </v-btn>
+
+          <v-btn
+            icon
+            variant="text"
+            size="small"
+            class="site-nav__theme-toggle"
+            :aria-label="themeStore.isDark ? $t('nav.switchToLight') : $t('nav.switchToDark')"
+            @click="themeStore.toggle()"
+          >
+            <v-icon
+              size="20"
+              class="site-nav__theme-icon"
+              :class="{ 'site-nav__theme-icon--spin': themeAnimating }"
+            >
+              {{ themeStore.isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}
+            </v-icon>
+          </v-btn>
+
+          <v-btn
+            class="site-nav__fab"
+            icon
+            variant="text"
+            :aria-label="$t('nav.openMenu')"
+            :aria-expanded="drawer"
+            @click="drawer = true"
+          >
+            <v-icon size="28">mdi-menu</v-icon>
+          </v-btn>
+        </div>
       </div>
     </div>
 
@@ -58,10 +119,10 @@
     >
       <div class="site-nav-drawer__header">
         <div>
-          <p class="site-nav-drawer__eyebrow">Navegação</p>
-          <p class="site-nav-drawer__title">Onde ir</p>
+          <p class="site-nav-drawer__eyebrow">{{ $t('nav.navigation') }}</p>
+          <p class="site-nav-drawer__title">{{ $t('nav.whereToGo') }}</p>
         </div>
-        <v-btn icon variant="text" aria-label="Fechar menu" @click="drawer = false">
+        <v-btn icon variant="text" :aria-label="$t('nav.closeMenu')" @click="drawer = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </div>
@@ -80,8 +141,8 @@
         <v-divider class="my-3 opacity-25" />
         <v-list-item
           prepend-icon="mdi-folder-multiple-outline"
-          title="Todos os projetos"
-          subtitle="Página com filtros"
+          :title="$t('nav.allProjects')"
+          :subtitle="$t('nav.allProjectsSub')"
           rounded="lg"
           class="site-nav-drawer__item site-nav-drawer__item--accent"
           @click="goAllProjects"
@@ -92,26 +153,53 @@
 </template>
 
 <script setup>
-import { computed, nextTick, ref } from "vue"
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { useDisplay } from "vuetify"
+import { useI18n } from "vue-i18n"
+import { useThemeStore } from "@/stores/theme"
+import { useLocaleStore } from "@/stores/locale"
 
 const NAV_OFFSET = 80
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const { mdAndUp } = useDisplay()
-/** Desktop: barra horizontal; tablet/phone: menu drawer */
+const themeStore = useThemeStore()
+const localeStore = useLocaleStore()
+
 const isDesktop = computed(() => mdAndUp.value)
-
 const drawer = ref(false)
+const themeAnimating = ref(false)
+const scrolled = ref(false)
 
-const navItems = [
-  { id: "projetos", label: "Projetos", subtitle: "Destaques e carrossel", icon: "mdi-folder-outline" },
-  { id: "sobre", label: "Sobre mim", subtitle: "Trajetória e foco", icon: "mdi-account-outline" },
-  { id: "habilidades", label: "Habilidades", subtitle: "Skills e certificações", icon: "mdi-code-tags" },
-  { id: "contato", label: "Contato", subtitle: "Mensagem e redes", icon: "mdi-email-outline" },
-]
+// Scroll-aware navbar
+function onScroll() {
+  scrolled.value = window.scrollY > 100
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
+
+// Animação de spin ao trocar tema
+watch(() => themeStore.isDark, () => {
+  themeAnimating.value = true
+  setTimeout(() => { themeAnimating.value = false }, 500)
+})
+
+const navItems = computed(() => [
+  { id: "projetos", label: t('nav.projects'), subtitle: t('nav.projectsSub'), icon: "mdi-folder-outline" },
+  { id: "sobre", label: t('nav.about'), subtitle: t('nav.aboutSub'), icon: "mdi-account-outline" },
+  { id: "habilidades", label: t('nav.skills'), subtitle: t('nav.skillsSub'), icon: "mdi-code-tags" },
+  { id: "contato", label: t('nav.contact'), subtitle: t('nav.contactSub'), icon: "mdi-email-outline" },
+])
 
 function scrollToSection(id) {
   const el = document.getElementById(id)
@@ -176,10 +264,18 @@ function onBrandClick() {
   min-height: 3.25rem;
   padding: 0.5rem 1rem;
   border-radius: 16px;
-  background: rgba(10, 14, 24, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 32px var(--shadow-heavy);
   backdrop-filter: blur(16px);
+  transition: background 0.4s ease, border-color 0.4s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.site-nav__inner--scrolled {
+  padding: 0.35rem 1rem;
+  backdrop-filter: blur(24px);
+  border-color: var(--border-accent);
+  box-shadow: 0 4px 20px var(--shadow-heavy);
 }
 
 .site-nav__brand {
@@ -205,7 +301,7 @@ function onBrandClick() {
   font-weight: 800;
   letter-spacing: 0.06em;
   color: #061018;
-  background: linear-gradient(135deg, #4ecca3, #3db892);
+  background: linear-gradient(135deg, var(--accent-teal), #3db892);
   flex-shrink: 0;
 }
 
@@ -213,7 +309,8 @@ function onBrandClick() {
   font-size: clamp(0.85rem, 2vw, 0.95rem);
   font-weight: 650;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
+  opacity: 0.95;
 }
 
 .site-nav__desktop {
@@ -240,7 +337,7 @@ function onBrandClick() {
   border-radius: 10px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--text-secondary);
   transition:
     color 0.2s ease,
     background 0.2s ease;
@@ -253,15 +350,15 @@ function onBrandClick() {
     width: 0;
     height: 2px;
     border-radius: 2px;
-    background: linear-gradient(90deg, #4ecca3, #5b6fff);
+    background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
     transform: translateX(-50%);
     transition: width 0.22s ease;
     opacity: 0;
   }
 
   &:hover {
-    color: #fff;
-    background: rgba(78, 204, 163, 0.08);
+    color: var(--text-primary);
+    background: var(--glow-teal);
 
     &::after {
       width: 60%;
@@ -270,21 +367,56 @@ function onBrandClick() {
   }
 }
 
+/* Locale toggle */
+.site-nav__locale-toggle {
+  color: var(--text-secondary) !important;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--accent-teal) !important;
+  }
+}
+
+.site-nav__locale-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+/* Theme toggle */
+.site-nav__theme-toggle {
+  color: var(--text-secondary) !important;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--accent-teal) !important;
+  }
+}
+
+.site-nav__theme-icon {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.site-nav__theme-icon--spin {
+  transform: rotate(360deg);
+}
+
 .site-nav__cta {
   text-transform: none !important;
   letter-spacing: 0.02em;
   font-weight: 600 !important;
-  background: rgba(78, 204, 163, 0.14) !important;
-  color: #c8f7e8 !important;
-  border: 1px solid rgba(78, 204, 163, 0.28) !important;
+  background: var(--glow-teal) !important;
+  color: var(--accent-teal) !important;
+  border: 1px solid var(--border-accent) !important;
 }
 
 .site-nav__cta:hover {
-  background: rgba(78, 204, 163, 0.22) !important;
+  filter: brightness(1.15);
 }
 
 .site-nav__fab {
-  color: rgba(255, 255, 255, 0.92) !important;
+  color: var(--text-primary) !important;
+  opacity: 0.92;
 }
 
 .site-nav-drawer__header {
@@ -300,14 +432,15 @@ function onBrandClick() {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(78, 204, 163, 0.85);
+  color: var(--accent-teal);
+  opacity: 0.85;
   margin: 0 0 0.2rem;
 }
 
 .site-nav-drawer__title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -333,7 +466,7 @@ function onBrandClick() {
 }
 
 .site-nav-drawer__item--accent :deep(.v-list-item-title) {
-  color: #4ecca3 !important;
+  color: var(--accent-teal) !important;
 }
 
 @media (max-width: 380px) {

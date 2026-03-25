@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "projects": "Projetos",
+    "projectsSub": "Destaques e carrossel",
+    "about": "Sobre mim",
+    "aboutSub": "Trajetória e foco",
+    "skills": "Habilidades",
+    "skillsSub": "Skills e certificações",
+    "contact": "Contato",
+    "contactSub": "Mensagem e redes",
+    "fullList": "Lista completa",
+    "allProjects": "Todos os projetos",
+    "allProjectsSub": "Página com filtros",
+    "navigation": "Navegação",
+    "whereToGo": "Onde ir",
+    "closeMenu": "Fechar menu",
+    "goToStart": "Ir para o início",
+    "switchToLight": "Mudar para light mode",
+    "switchToDark": "Mudar para dark mode",
+    "openMenu": "Abrir menu de navegação"
+  },
+  "hero": {
+    "badge": "Portfólio · 2025",
+    "name": "Dario Ramos",
+    "lead": "Desenvolvedor front-end — interfaces claras com <strong>Vue</strong> e <strong>Vuetify</strong>, com foco em performance e boa experiência para quem usa.",
+    "viewProjects": "Ver projetos",
+    "contact": "Contato",
+    "scrollHint": "Role para ver"
+  },
+  "projects": {
+    "title": "Projetos",
+    "lead": "Destaques no carrossel; a lista completa reúne todos os trabalhos.",
+    "fullListing": "Listagem completa",
+    "viewDetails": "Ver detalhes"
+  },
+  "about": {
+    "title": "Sobre mim",
+    "lead": "Um pouco da minha trajetória e do que busco em cada projeto.",
+    "role": "Front-end Developer",
+    "p1": "Sou um desenvolvedor front-end apaixonado por criar interfaces modernas, responsivas e funcionais. Tenho experiência em <strong>Vue.js</strong>, <strong>Vuetify</strong> e outras tecnologias do ecossistema web, sempre buscando unir performance, design e usabilidade.",
+    "p2": "Meu foco é transformar ideias em experiências digitais profissionais, combinando <strong>boas práticas de desenvolvimento</strong> com <strong>design inovador</strong>. Gosto de trabalhar em projetos que tragam impacto real para as pessoas e empresas.",
+    "p3": "Além de programar, valorizo a aprendizagem contínua e o trabalho em equipe, acreditando que compartilhar conhecimento é essencial para crescer na área de tecnologia."
+  },
+  "skills": {
+    "title": "Habilidades",
+    "lead": "Toque em uma skill para ver nível e referências.",
+    "estimatedLevel": "Nível estimado: {level}%",
+    "close": "Fechar"
+  },
+  "contact": {
+    "title": "Contato",
+    "lead": "Envie uma mensagem ou fale comigo pelas redes.",
+    "cta": "Vamos conversar?",
+    "ctaLead": "Estou disponível para novos projetos, freelances ou apenas uma boa troca de ideias.",
+    "nameLabel": "Seu nome",
+    "emailLabel": "Seu e-mail",
+    "messageLabel": "Mensagem",
+    "send": "Enviar",
+    "fillAll": "Por favor, preencha todos os campos obrigatórios!",
+    "sent": "Mensagem enviada com sucesso!"
+  },
+  "allProjects": {
+    "title": "Meus projetos",
+    "subtitle": "Explore todos os trabalhos e filtre por categoria.",
+    "projectCount": "{count} projeto | {count} projetos"
+  },
+  "carousel": {
+    "hint": "Toque para ver o projeto"
+  },
+  "dialog": {
+    "close": "Fechar",
+    "openProject": "Abrir projeto",
+    "linkSoon": "Link do projeto ou repositório será adicionado em breve."
+  },
+  "footer": {
+    "copyright": "© 2025 — Dario Ramos"
+  },
+  "filters": {
+    "all": "Todos",
+    "web": "Web",
+    "python": "Python"
+  },
+  "rank": {
+    "tierS": "Tier S",
+    "tierA": "Tier A",
+    "tierB": "Tier B",
+    "tierC": "Tier C"
+  }
+}

@@ -26,12 +26,23 @@
           icon
           variant="text"
           size="small"
-          aria-label="Fechar"
+          :aria-label="$t('dialog.close')"
           @click="close"
         >
           <v-icon color="white">mdi-close</v-icon>
         </v-btn>
         <div class="project-dialog__hero-text">
+          <div class="project-dialog__rank-row">
+            <div
+              v-if="project.rank"
+              class="dialog-rank-badge"
+              :class="`dialog-rank-badge--${project.rank}`"
+              :aria-label="`Rank ${rankMeta?.label}`"
+            >
+              <v-icon :icon="rankMeta?.icon" size="13" />
+              <span>{{ rankMeta?.label }}</span>
+            </div>
+          </div>
           <h2 class="project-dialog__title">{{ project.name }}</h2>
           <div class="project-dialog__chips">
             <v-chip
@@ -49,7 +60,7 @@
 
       <v-card-text class="project-dialog__body">
         <p class="project-dialog__about">
-          {{ project.about }}
+          {{ projectAbout }}
         </p>
 
         <div class="project-dialog__actions">
@@ -64,10 +75,10 @@
             rel="noopener noreferrer"
           >
             <v-icon start size="20">mdi-open-in-new</v-icon>
-            {{ project.ctaLabel || "Abrir projeto" }}
+            {{ projectCtaLabel }}
           </v-btn>
           <p v-else class="project-dialog__empty-link">
-            Link do projeto ou repositório será adicionado em breve.
+            {{ $t('dialog.linkSoon') }}
           </p>
         </div>
       </v-card-text>
@@ -79,11 +90,16 @@
 import { computed } from "vue"
 import { storeToRefs } from "pinia"
 import { useDisplay } from "vuetify"
+import { useI18n } from "vue-i18n"
 import { useDialogStore } from "@/stores/dialogProjects"
+import { RANK_META } from "@/data/rankMeta"
+import { useLocaleStore } from "@/stores/locale"
 
+const { t } = useI18n()
 const dialog = useDialogStore()
 const { isOpen, project } = storeToRefs(dialog)
 const { smAndDown } = useDisplay()
+const localeStore = useLocaleStore()
 
 const techTags = computed(() => {
   if (!project.value?.tecno) return []
@@ -93,6 +109,22 @@ const techTags = computed(() => {
     .filter(Boolean)
 })
 
+const rankMeta = computed(() => project.value?.rank ? RANK_META[project.value.rank] : null)
+
+const projectAbout = computed(() => {
+  const about = project.value?.about
+  if (!about) return ''
+  if (typeof about === 'string') return about
+  return about[localeStore.locale] || about['pt-BR'] || ''
+})
+
+const projectCtaLabel = computed(() => {
+  const label = project.value?.ctaLabel
+  if (!label) return t('dialog.openProject')
+  if (typeof label === 'string') return label
+  return label[localeStore.locale] || label['pt-BR'] || t('dialog.openProject')
+})
+
 function close() {
   dialog.closeDialog()
 }
@@ -100,12 +132,8 @@ function close() {
 
 <style scoped lang="scss">
 .project-dialog-card {
-  background: linear-gradient(
-    165deg,
-    rgba(18, 24, 38, 0.98) 0%,
-    rgba(13, 17, 28, 0.99) 100%
-  ) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--dialog-bg) !important;
+  border: 1px solid var(--border-subtle);
   overflow: hidden;
 }
 
@@ -147,6 +175,47 @@ function close() {
   z-index: 1;
 }
 
+.project-dialog__rank-row {
+  margin-bottom: 0.5rem;
+}
+
+.dialog-rank-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  border: 1px solid;
+
+  span { line-height: 1; }
+}
+
+.dialog-rank-badge--S {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  border-color: rgba(255, 215, 0, 0.45);
+}
+.dialog-rank-badge--A {
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.15);
+  border-color: rgba(192, 132, 252, 0.4);
+}
+.dialog-rank-badge--B {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.dialog-rank-badge--C {
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
 .project-dialog__title {
   font-size: 1.5rem;
   font-weight: 700;
@@ -163,9 +232,9 @@ function close() {
 }
 
 .project-dialog__chip {
-  background: rgba(78, 204, 163, 0.15) !important;
-  color: #4ecca3 !important;
-  border: 1px solid rgba(78, 204, 163, 0.35) !important;
+  background: var(--glow-teal) !important;
+  color: var(--accent-teal) !important;
+  border: 1px solid var(--border-accent) !important;
   font-weight: 600;
   font-size: 0.75rem;
 }
@@ -175,7 +244,7 @@ function close() {
 }
 
 .project-dialog__about {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.65;
   margin: 0 0 1.25rem;

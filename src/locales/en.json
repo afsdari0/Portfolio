@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "projectsSub": "Highlights & carousel",
+    "about": "About me",
+    "aboutSub": "Background & focus",
+    "skills": "Skills",
+    "skillsSub": "Skills & certifications",
+    "contact": "Contact",
+    "contactSub": "Message & socials",
+    "fullList": "Full list",
+    "allProjects": "All projects",
+    "allProjectsSub": "Page with filters",
+    "navigation": "Navigation",
+    "whereToGo": "Where to go",
+    "closeMenu": "Close menu",
+    "goToStart": "Go to top",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "openMenu": "Open navigation menu"
+  },
+  "hero": {
+    "badge": "Portfolio · 2025",
+    "name": "Dario Ramos",
+    "lead": "Front-end developer — clean interfaces with <strong>Vue</strong> and <strong>Vuetify</strong>, focused on performance and great user experience.",
+    "viewProjects": "View projects",
+    "contact": "Contact",
+    "scrollHint": "Scroll to explore"
+  },
+  "projects": {
+    "title": "Projects",
+    "lead": "Highlights in the carousel; the full list gathers all work.",
+    "fullListing": "Full listing",
+    "viewDetails": "View details"
+  },
+  "about": {
+    "title": "About me",
+    "lead": "A bit about my journey and what I look for in each project.",
+    "role": "Front-end Developer",
+    "p1": "I'm a front-end developer passionate about building modern, responsive, and functional interfaces. I have experience with <strong>Vue.js</strong>, <strong>Vuetify</strong>, and other web ecosystem technologies, always striving to combine performance, design, and usability.",
+    "p2": "My focus is turning ideas into professional digital experiences, combining <strong>best development practices</strong> with <strong>innovative design</strong>. I enjoy working on projects that deliver real impact to people and businesses.",
+    "p3": "Beyond coding, I value continuous learning and teamwork, believing that sharing knowledge is essential for growing in the tech field."
+  },
+  "skills": {
+    "title": "Skills",
+    "lead": "Tap a skill to see level and references.",
+    "estimatedLevel": "Estimated level: {level}%",
+    "close": "Close"
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "Send a message or reach out through socials.",
+    "cta": "Let's talk?",
+    "ctaLead": "I'm available for new projects, freelance work, or just a good exchange of ideas.",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email",
+    "messageLabel": "Message",
+    "send": "Send",
+    "fillAll": "Please fill in all required fields!",
+    "sent": "Message sent successfully!"
+  },
+  "allProjects": {
+    "title": "My projects",
+    "subtitle": "Explore all work and filter by category.",
+    "projectCount": "{count} project | {count} projects"
+  },
+  "carousel": {
+    "hint": "Tap to view project"
+  },
+  "dialog": {
+    "close": "Close",
+    "openProject": "Open project",
+    "linkSoon": "Project or repository link will be added soon."
+  },
+  "footer": {
+    "copyright": "© 2025 — Developed by Dario Ramos"
+  },
+  "filters": {
+    "all": "All",
+    "web": "Web",
+    "python": "Python"
+  },
+  "rank": {
+    "tierS": "Tier S",
+    "tierA": "Tier A",
+    "tierB": "Tier B",
+    "tierC": "Tier C"
+  }
+}
