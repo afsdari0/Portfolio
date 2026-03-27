@@ -54,13 +54,14 @@
 
           <v-btn
             class="site-nav__cta"
+            :class="{ 'site-nav__cta--back': isAllProjects }"
             variant="flat"
             size="small"
             rounded="lg"
-            :to="'/allProjects'"
+            :to="isAllProjects ? '/' : '/allProjects'"
           >
-            <v-icon start size="18">mdi-view-grid-outline</v-icon>
-            {{ $t('nav.fullList') }}
+            <v-icon start size="18">{{ isAllProjects ? 'mdi-home-variant-outline' : 'mdi-view-grid-outline' }}</v-icon>
+            {{ $t(isAllProjects ? 'nav.backHub' : 'nav.exploreWork') }}
           </v-btn>
         </nav>
 
@@ -140,12 +141,12 @@
         />
         <v-divider class="my-3 opacity-25" />
         <v-list-item
-          prepend-icon="mdi-folder-multiple-outline"
-          :title="$t('nav.allProjects')"
-          :subtitle="$t('nav.allProjectsSub')"
+          :prepend-icon="isAllProjects ? 'mdi-home-variant-outline' : 'mdi-folder-multiple-outline'"
+          :title="isAllProjects ? $t('nav.backHub') : $t('nav.allProjects')"
+          :subtitle="isAllProjects ? $t('nav.backHubSub') : $t('nav.allProjectsSub')"
           rounded="lg"
           class="site-nav-drawer__item site-nav-drawer__item--accent"
-          @click="goAllProjects"
+          @click="goCtaPage"
         />
       </v-list>
     </v-navigation-drawer>
@@ -170,6 +171,7 @@ const themeStore = useThemeStore()
 const localeStore = useLocaleStore()
 
 const isDesktop = computed(() => mdAndUp.value)
+const isAllProjects = computed(() => route.path === '/allProjects')
 const drawer = ref(false)
 const themeAnimating = ref(false)
 const scrolled = ref(false)
@@ -225,9 +227,9 @@ function onDrawerNavigate(id) {
   navigateTo(id)
 }
 
-function goAllProjects() {
+function goCtaPage() {
   drawer.value = false
-  router.push("/allProjects")
+  router.push(isAllProjects.value ? "/" : "/allProjects")
 }
 
 function onBrandClick() {

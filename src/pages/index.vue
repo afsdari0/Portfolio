@@ -78,7 +78,7 @@
               class="glow-btn mb-5 mt-4 d-flex justify-center align-center"
               @click="$router.push('/allProjects')"
             >
-              {{ $t('projects.fullListing') }}
+              {{ $t('projects.exploreWork') }}
             </v-btn>
           </div>
         </section>

@@ -8,7 +8,9 @@
     "skillsSub": "Skills & certifications",
     "contact": "Contact",
     "contactSub": "Message & socials",
-    "fullList": "Full list",
+    "exploreWork": "Explore work",
+    "backHub": "← Hub",
+    "backHubSub": "Back to main page",
     "allProjects": "All projects",
     "allProjectsSub": "Page with filters",
     "navigation": "Navigation",
@@ -30,7 +32,7 @@
   "projects": {
     "title": "Projects",
     "lead": "Highlights in the carousel; the full list gathers all work.",
-    "fullListing": "Full listing",
+    "exploreWork": "Explore work",
     "viewDetails": "View details"
   },
   "about": {
