@@ -121,8 +121,7 @@
     >
       <div class="site-nav-drawer__header">
         <div>
-          <p class="site-nav-drawer__eyebrow">{{ $t('nav.navigation') }}</p>
-          <p class="site-nav-drawer__title">{{ $t('nav.whereToGo') }}</p>
+          <p class="site-nav-drawer__title">{{ $t('nav.navigation') }}</p>
         </div>
         <v-btn :aria-label="$t('nav.closeMenu')" icon variant="text" @click="drawer = false">
           <v-icon>mdi-close</v-icon>

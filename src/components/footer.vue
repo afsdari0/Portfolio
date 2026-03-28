@@ -1,19 +1,13 @@
 <template>
   <footer class="site-footer w-100">
-    <v-container class="footer-inner w-100 pa-5 d-flex flex-column align-center">
-      <div class="footer-brand">
-        <span aria-hidden="true" class="footer-logo">DR</span>
-        <p class="footer-tagline">{{ $t('footer.tagline') }}</p>
-      </div>
-
-      <div class="footer-bottom">
-        <span class="footer-terminal">
-          <span class="footer-terminal__prompt">&gt;</span>
-          {{ $t('footer.copyright') }}
-          <span class="footer-terminal__cursor">_</span>
-        </span>
-        <span class="footer-made">{{ $t('footer.madeWith') }}</span>
-      </div>
+    <v-container class="footer-inner w-100 pa-4 d-flex align-center justify-center">
+      <span class="footer-terminal">
+        <span class="footer-terminal__prompt">&gt;</span>
+        {{ $t('footer.copyright') }}
+        <span class="footer-terminal__cursor">_</span>
+      </span>
+      <span class="footer-sep">·</span>
+      <span class="footer-made">{{ $t('footer.madeWith') }}</span>
     </v-container>
   </footer>
 </template>
@@ -27,53 +21,11 @@
 <style scoped lang="scss">
 .site-footer {
   background: var(--footer-bg);
-  border-top: 1px solid var(--border-subtle);
 }
 
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.footer-inner {
   gap: 0.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 10px;
-  font-family: var(--font-heading);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #061018;
-  background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
-}
-
-.footer-tagline {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  text-align: center;
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 32rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-subtle);
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-    gap: 0.4rem;
-    text-align: center;
-  }
+  flex-wrap: wrap;
 }
 
 .footer-terminal {
@@ -95,6 +47,12 @@
   display: inline-block;
   color: var(--accent-teal);
   animation: footerCursorBlink 0.9s steps(1) infinite;
+}
+
+.footer-sep {
+  color: var(--text-muted);
+  opacity: 0.3;
+  font-size: 0.8rem;
 }
 
 .footer-made {
