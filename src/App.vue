@@ -1,9 +1,10 @@
 <template>
   <v-app class="appBg">
     <!-- Partículas flutuantes CSS -->
-    <div class="app-particles" aria-hidden="true">
+    <div aria-hidden="true" class="app-particles">
       <div class="app-particles__layer" />
       <div class="app-particles__layer app-particles__layer--fast" />
+      <div class="app-particles__layer app-particles__layer--large" />
     </div>
 
     <router-view v-slot="{ Component, route }">
@@ -16,14 +17,14 @@
 </template>
 
 <script setup>
-import { watch } from "vue"
-import { useTheme } from "vuetify"
-import { useThemeStore } from "@/stores/theme"
+  import { watch } from 'vue'
+  import { useTheme } from 'vuetify'
+  import { useThemeStore } from '@/stores/theme'
 
-const vuetifyTheme = useTheme()
-const themeStore = useThemeStore()
+  const vuetifyTheme = useTheme()
+  const themeStore = useThemeStore()
 
-watch(() => themeStore.isDark, (dark) => {
-  vuetifyTheme.global.name.value = dark ? 'portfolioDark' : 'portfolioLight'
-}, { immediate: true })
+  watch(() => themeStore.isDark, dark => {
+    vuetifyTheme.global.name.value = dark ? 'portfolioDark' : 'portfolioLight'
+  }, { immediate: true })
 </script>

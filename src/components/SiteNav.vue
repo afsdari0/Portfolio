@@ -1,22 +1,23 @@
 <template>
   <header class="site-nav" role="banner">
+    <div v-show="scrollPercent > 0" class="scroll-progress" :style="{ width: scrollPercent + '%' }" />
     <div class="site-nav__bar">
       <div class="site-nav__inner" :class="{ 'site-nav__inner--scrolled': scrolled }">
         <button
-          type="button"
-          class="site-nav__brand"
           :aria-label="$t('nav.goToStart')"
+          class="site-nav__brand"
+          type="button"
           @click="onBrandClick"
         >
-          <span class="site-nav__mark" aria-hidden="true">DR</span>
+          <span aria-hidden="true" class="site-nav__mark">DR</span>
           <span class="site-nav__brand-text">Dario Ramos</span>
         </button>
 
         <!-- Desktop: links + toggles + CTA -->
-        <nav v-if="isDesktop" class="site-nav__desktop" :aria-label="$t('nav.navigation')">
+        <nav v-if="isDesktop" :aria-label="$t('nav.navigation')" class="site-nav__desktop">
           <ul class="site-nav__list">
             <li v-for="item in navItems" :key="item.id">
-              <button type="button" class="site-nav__link" @click="navigateTo(item.id)">
+              <button class="site-nav__link" type="button" @click="navigateTo(item.id)">
                 {{ item.label }}
               </button>
             </li>
@@ -24,11 +25,11 @@
 
           <!-- Locale toggle -->
           <v-btn
-            icon
-            variant="text"
-            size="small"
-            class="site-nav__locale-toggle"
             :aria-label="localeStore.locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
+            class="site-nav__locale-toggle"
+            icon
+            size="small"
+            variant="text"
             @click="localeStore.toggle()"
           >
             <span class="site-nav__locale-label">{{ localeStore.locale === 'pt-BR' ? 'EN' : 'PT' }}</span>
@@ -36,17 +37,17 @@
 
           <!-- Theme toggle -->
           <v-btn
-            icon
-            variant="text"
-            size="small"
-            class="site-nav__theme-toggle"
             :aria-label="themeStore.isDark ? $t('nav.switchToLight') : $t('nav.switchToDark')"
+            class="site-nav__theme-toggle"
+            icon
+            size="small"
+            variant="text"
             @click="themeStore.toggle()"
           >
             <v-icon
-              size="20"
               class="site-nav__theme-icon"
               :class="{ 'site-nav__theme-icon--spin': themeAnimating }"
+              size="20"
             >
               {{ themeStore.isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}
             </v-icon>
@@ -55,12 +56,12 @@
           <v-btn
             class="site-nav__cta"
             :class="{ 'site-nav__cta--back': isAllProjects }"
-            variant="flat"
-            size="small"
             rounded="lg"
+            size="small"
             :to="isAllProjects ? '/' : '/allProjects'"
+            variant="flat"
           >
-            <v-icon start size="18">{{ isAllProjects ? 'mdi-home-variant-outline' : 'mdi-view-grid-outline' }}</v-icon>
+            <v-icon size="18" start>{{ isAllProjects ? 'mdi-home-variant-outline' : 'mdi-view-grid-outline' }}</v-icon>
             {{ $t(isAllProjects ? 'nav.backHub' : 'nav.exploreWork') }}
           </v-btn>
         </nav>
@@ -69,39 +70,39 @@
         <div v-if="!isDesktop" class="d-flex align-center ga-1">
           <!-- Locale toggle mobile -->
           <v-btn
-            icon
-            variant="text"
-            size="small"
-            class="site-nav__locale-toggle"
             :aria-label="localeStore.locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'"
+            class="site-nav__locale-toggle"
+            icon
+            size="small"
+            variant="text"
             @click="localeStore.toggle()"
           >
             <span class="site-nav__locale-label">{{ localeStore.locale === 'pt-BR' ? 'EN' : 'PT' }}</span>
           </v-btn>
 
           <v-btn
-            icon
-            variant="text"
-            size="small"
-            class="site-nav__theme-toggle"
             :aria-label="themeStore.isDark ? $t('nav.switchToLight') : $t('nav.switchToDark')"
+            class="site-nav__theme-toggle"
+            icon
+            size="small"
+            variant="text"
             @click="themeStore.toggle()"
           >
             <v-icon
-              size="20"
               class="site-nav__theme-icon"
               :class="{ 'site-nav__theme-icon--spin': themeAnimating }"
+              size="20"
             >
               {{ themeStore.isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}
             </v-icon>
           </v-btn>
 
           <v-btn
+            :aria-expanded="drawer"
+            :aria-label="$t('nav.openMenu')"
             class="site-nav__fab"
             icon
             variant="text"
-            :aria-label="$t('nav.openMenu')"
-            :aria-expanded="drawer"
             @click="drawer = true"
           >
             <v-icon size="28">mdi-menu</v-icon>
@@ -112,18 +113,18 @@
 
     <v-navigation-drawer
       v-model="drawer"
+      class="site-nav-drawer"
       location="end"
+      scrim-opacity="0.55"
       temporary
       width="320"
-      class="site-nav-drawer"
-      scrim-opacity="0.55"
     >
       <div class="site-nav-drawer__header">
         <div>
           <p class="site-nav-drawer__eyebrow">{{ $t('nav.navigation') }}</p>
           <p class="site-nav-drawer__title">{{ $t('nav.whereToGo') }}</p>
         </div>
-        <v-btn icon variant="text" :aria-label="$t('nav.closeMenu')" @click="drawer = false">
+        <v-btn :aria-label="$t('nav.closeMenu')" icon variant="text" @click="drawer = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </div>
@@ -132,113 +133,139 @@
         <v-list-item
           v-for="item in navItems"
           :key="item.id"
-          :prepend-icon="item.icon"
-          :title="item.label"
-          :subtitle="item.subtitle"
-          rounded="lg"
           class="site-nav-drawer__item"
+          rounded="lg"
+          :subtitle="item.subtitle"
+          :title="item.label"
           @click="onDrawerNavigate(item.id)"
-        />
+        >
+          <template #prepend>
+            <component :is="phosphorIcons[item.id]" class="mr-3" :size="22" weight="duotone" />
+          </template>
+        </v-list-item>
         <v-divider class="my-3 opacity-25" />
         <v-list-item
-          :prepend-icon="isAllProjects ? 'mdi-home-variant-outline' : 'mdi-folder-multiple-outline'"
-          :title="isAllProjects ? $t('nav.backHub') : $t('nav.allProjects')"
-          :subtitle="isAllProjects ? $t('nav.backHubSub') : $t('nav.allProjectsSub')"
-          rounded="lg"
           class="site-nav-drawer__item site-nav-drawer__item--accent"
+          :prepend-icon="isAllProjects ? 'mdi-home-variant-outline' : 'mdi-folder-multiple-outline'"
+          rounded="lg"
+          :subtitle="isAllProjects ? $t('nav.backHubSub') : $t('nav.allProjectsSub')"
+          :title="isAllProjects ? $t('nav.backHub') : $t('nav.allProjects')"
           @click="goCtaPage"
         />
       </v-list>
     </v-navigation-drawer>
+
+    <Transition name="fab-fade">
+      <button
+        v-if="scrolled"
+        aria-label="Scroll to top"
+        class="scroll-top-fab"
+        @click="scrollToTop"
+      >
+        <v-icon size="20">mdi-chevron-up</v-icon>
+      </button>
+    </Transition>
   </header>
 </template>
 
 <script setup>
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue"
-import { useRoute, useRouter } from "vue-router"
-import { useDisplay } from "vuetify"
-import { useI18n } from "vue-i18n"
-import { useThemeStore } from "@/stores/theme"
-import { useLocaleStore } from "@/stores/locale"
+  import { PhCode, PhEnvelope, PhFolder, PhUser } from '@phosphor-icons/vue'
+  import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useRoute, useRouter } from 'vue-router'
+  import { useDisplay } from 'vuetify'
+  import { useLocaleStore } from '@/stores/locale'
+  import { useThemeStore } from '@/stores/theme'
 
-const NAV_OFFSET = 80
+  const phosphorIcons = { projetos: PhFolder, sobre: PhUser, habilidades: PhCode, contato: PhEnvelope }
 
-const { t } = useI18n()
-const route = useRoute()
-const router = useRouter()
-const { mdAndUp } = useDisplay()
-const themeStore = useThemeStore()
-const localeStore = useLocaleStore()
+  const NAV_OFFSET = 80
 
-const isDesktop = computed(() => mdAndUp.value)
-const isAllProjects = computed(() => route.path === '/allProjects')
-const drawer = ref(false)
-const themeAnimating = ref(false)
-const scrolled = ref(false)
+  const { t } = useI18n()
+  const route = useRoute()
+  const router = useRouter()
+  const { mdAndUp } = useDisplay()
+  const themeStore = useThemeStore()
+  const localeStore = useLocaleStore()
 
-// Scroll-aware navbar
-function onScroll() {
-  scrolled.value = window.scrollY > 100
-}
+  const isDesktop = computed(() => mdAndUp.value)
+  const isAllProjects = computed(() => route.path === '/allProjects')
+  const drawer = ref(false)
+  const themeAnimating = ref(false)
+  const scrolled = ref(false)
+  const scrollPercent = ref(0)
 
-onMounted(() => {
-  window.addEventListener('scroll', onScroll, { passive: true })
-  onScroll()
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-})
-
-// Animação de spin ao trocar tema
-watch(() => themeStore.isDark, () => {
-  themeAnimating.value = true
-  setTimeout(() => { themeAnimating.value = false }, 500)
-})
-
-const navItems = computed(() => [
-  { id: "projetos", label: t('nav.projects'), subtitle: t('nav.projectsSub'), icon: "mdi-folder-outline" },
-  { id: "sobre", label: t('nav.about'), subtitle: t('nav.aboutSub'), icon: "mdi-account-outline" },
-  { id: "habilidades", label: t('nav.skills'), subtitle: t('nav.skillsSub'), icon: "mdi-code-tags" },
-  { id: "contato", label: t('nav.contact'), subtitle: t('nav.contactSub'), icon: "mdi-email-outline" },
-])
-
-function scrollToSection(id) {
-  const el = document.getElementById(id)
-  if (!el) return
-  const y = el.getBoundingClientRect().top + window.pageYOffset - NAV_OFFSET
-  window.scrollTo({ top: y, behavior: "smooth" })
-}
-
-async function navigateTo(id) {
-  if (route.path === "/") {
-    scrollToSection(id)
-    return
+  // Scroll-aware navbar
+  function onScroll () {
+    scrolled.value = window.scrollY > 100
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight
+    scrollPercent.value = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0
   }
-  await router.push({ path: "/"})
-  await nextTick()
-  requestAnimationFrame(() => {
-    scrollToSection(id)
+
+  function scrollToTop () {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  onMounted(() => {
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
   })
-}
 
-function onDrawerNavigate(id) {
-  drawer.value = false
-  navigateTo(id)
-}
+  onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll)
+  })
 
-function goCtaPage() {
-  drawer.value = false
-  router.push(isAllProjects.value ? "/" : "/allProjects")
-}
+  // Animação de spin ao trocar tema
+  watch(() => themeStore.isDark, () => {
+    themeAnimating.value = true
+    setTimeout(() => {
+      themeAnimating.value = false
+    }, 500)
+  })
 
-function onBrandClick() {
-  if (route.path === "/") {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  } else {
-    router.push("/")
+  const navItems = computed(() => [
+    { id: 'projetos', label: t('nav.projects'), subtitle: t('nav.projectsSub') },
+    { id: 'sobre', label: t('nav.about'), subtitle: t('nav.aboutSub') },
+    { id: 'habilidades', label: t('nav.skills'), subtitle: t('nav.skillsSub') },
+    { id: 'contato', label: t('nav.contact'), subtitle: t('nav.contactSub') },
+  ])
+
+  function scrollToSection (id) {
+    const el = document.getElementById(id)
+    if (!el) return
+    const y = el.getBoundingClientRect().top + window.pageYOffset - NAV_OFFSET
+    window.scrollTo({ top: y, behavior: 'smooth' })
   }
-}
+
+  async function navigateTo (id) {
+    if (route.path === '/') {
+      scrollToSection(id)
+      return
+    }
+    await router.push({ path: '/' })
+    await nextTick()
+    requestAnimationFrame(() => {
+      scrollToSection(id)
+    })
+  }
+
+  function onDrawerNavigate (id) {
+    drawer.value = false
+    navigateTo(id)
+  }
+
+  function goCtaPage () {
+    drawer.value = false
+    router.push(isAllProjects.value ? '/' : '/allProjects')
+  }
+
+  function onBrandClick () {
+    if (route.path === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      router.push('/')
+    }
+  }
 </script>
 
 <style scoped lang="scss">
@@ -299,8 +326,9 @@ function onBrandClick() {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 10px;
+  font-family: var(--font-heading);
   font-size: 0.7rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.06em;
   color: #061018;
   background: linear-gradient(135deg, var(--accent-teal), #3db892);
@@ -308,8 +336,9 @@ function onBrandClick() {
 }
 
 .site-nav__brand-text {
+  font-family: var(--font-heading);
   font-size: clamp(0.85rem, 2vw, 0.95rem);
-  font-weight: 650;
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   opacity: 0.95;
@@ -430,6 +459,7 @@ function onBrandClick() {
 }
 
 .site-nav-drawer__eyebrow {
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -440,6 +470,7 @@ function onBrandClick() {
 }
 
 .site-nav-drawer__title {
+  font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -475,5 +506,59 @@ function onBrandClick() {
   .site-nav__brand-text {
     display: none;
   }
+}
+
+/* ---- Scroll progress bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue), var(--accent-purple));
+  z-index: 101;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ---- Scroll-to-top FAB ---- */
+.scroll-top-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 90;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--accent-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px var(--shadow-medium);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-heavy);
+  }
+}
+
+.fab-fade-enter-active {
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fab-fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.fab-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.8) translateY(8px);
+}
+.fab-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.8) translateY(8px);
 }
 </style>

@@ -1,32 +1,32 @@
 <template>
   <v-dialog
     v-model="isOpen"
-    :max-width="560"
+    content-class="project-dialog-content"
     :fullscreen="smAndDown"
+    :max-width="560"
     scrollable
     transition="dialog-bottom-transition"
-    content-class="project-dialog-content"
   >
     <v-card
       v-if="project"
       class="project-dialog-card"
-      rounded="xl"
       elevation="12"
+      rounded="xl"
     >
       <div class="project-dialog__hero">
         <v-img
-          :src="project.img"
+          class="project-dialog__img"
           cover
           height="220"
-          class="project-dialog__img"
+          :src="project.img"
         />
         <div class="project-dialog__scrim" />
         <v-btn
+          :aria-label="$t('dialog.close')"
           class="project-dialog__close"
           icon
-          variant="text"
           size="small"
-          :aria-label="$t('dialog.close')"
+          variant="text"
           @click="close"
         >
           <v-icon color="white">mdi-close</v-icon>
@@ -35,9 +35,9 @@
           <div class="project-dialog__rank-row">
             <div
               v-if="project.rank"
+              :aria-label="`Rank ${rankMeta?.label}`"
               class="dialog-rank-badge"
               :class="`dialog-rank-badge--${project.rank}`"
-              :aria-label="`Rank ${rankMeta?.label}`"
             >
               <v-icon :icon="rankMeta?.icon" size="13" />
               <span>{{ rankMeta?.label }}</span>
@@ -48,9 +48,9 @@
             <v-chip
               v-for="(tag, i) in techTags"
               :key="i"
+              class="project-dialog__chip"
               size="small"
               variant="flat"
-              class="project-dialog__chip"
             >
               {{ tag }}
             </v-chip>
@@ -67,14 +67,14 @@
           <v-btn
             v-if="project.link"
             block
-            size="large"
-            rounded="lg"
             class="project-dialog__cta"
             :href="project.link"
-            target="_blank"
             rel="noopener noreferrer"
+            rounded="lg"
+            size="large"
+            target="_blank"
           >
-            <v-icon start size="20">mdi-open-in-new</v-icon>
+            <v-icon size="20" start>mdi-open-in-new</v-icon>
             {{ projectCtaLabel }}
           </v-btn>
           <p v-else class="project-dialog__empty-link">
@@ -87,47 +87,47 @@
 </template>
 
 <script setup>
-import { computed } from "vue"
-import { storeToRefs } from "pinia"
-import { useDisplay } from "vuetify"
-import { useI18n } from "vue-i18n"
-import { useDialogStore } from "@/stores/dialogProjects"
-import { RANK_META } from "@/data/rankMeta"
-import { useLocaleStore } from "@/stores/locale"
+  import { storeToRefs } from 'pinia'
+  import { computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useDisplay } from 'vuetify'
+  import { RANK_META } from '@/data/rankMeta'
+  import { useDialogStore } from '@/stores/dialogProjects'
+  import { useLocaleStore } from '@/stores/locale'
 
-const { t } = useI18n()
-const dialog = useDialogStore()
-const { isOpen, project } = storeToRefs(dialog)
-const { smAndDown } = useDisplay()
-const localeStore = useLocaleStore()
+  const { t } = useI18n()
+  const dialog = useDialogStore()
+  const { isOpen, project } = storeToRefs(dialog)
+  const { smAndDown } = useDisplay()
+  const localeStore = useLocaleStore()
 
-const techTags = computed(() => {
-  if (!project.value?.tecno) return []
-  return project.value.tecno
-    .split(/[\/,|]/)
-    .map((s) => s.trim())
-    .filter(Boolean)
-})
+  const techTags = computed(() => {
+    if (!project.value?.tecno) return []
+    return project.value.tecno
+      .split(/[\/,|]/)
+      .map(s => s.trim())
+      .filter(Boolean)
+  })
 
-const rankMeta = computed(() => project.value?.rank ? RANK_META[project.value.rank] : null)
+  const rankMeta = computed(() => project.value?.rank ? RANK_META[project.value.rank] : null)
 
-const projectAbout = computed(() => {
-  const about = project.value?.about
-  if (!about) return ''
-  if (typeof about === 'string') return about
-  return about[localeStore.locale] || about['pt-BR'] || ''
-})
+  const projectAbout = computed(() => {
+    const about = project.value?.about
+    if (!about) return ''
+    if (typeof about === 'string') return about
+    return about[localeStore.locale] || about['pt-BR'] || ''
+  })
 
-const projectCtaLabel = computed(() => {
-  const label = project.value?.ctaLabel
-  if (!label) return t('dialog.openProject')
-  if (typeof label === 'string') return label
-  return label[localeStore.locale] || label['pt-BR'] || t('dialog.openProject')
-})
+  const projectCtaLabel = computed(() => {
+    const label = project.value?.ctaLabel
+    if (!label) return t('dialog.openProject')
+    if (typeof label === 'string') return label
+    return label[localeStore.locale] || label['pt-BR'] || t('dialog.openProject')
+  })
 
-function close() {
-  dialog.closeDialog()
-}
+  function close () {
+    dialog.closeDialog()
+  }
 </script>
 
 <style scoped lang="scss">
@@ -185,6 +185,7 @@ function close() {
   gap: 0.3rem;
   padding: 0.25rem 0.6rem;
   border-radius: 8px;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -217,6 +218,7 @@ function close() {
 }
 
 .project-dialog__title {
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;

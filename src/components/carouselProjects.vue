@@ -2,55 +2,55 @@
   <v-defaults-provider :defaults="{ VBtn: { variant: 'outlined', color: '#eee' } }">
     <v-sheet
       class="carousel-projects-shell overflow-hidden"
-      rounded="xl"
       elevation="8"
+      rounded="xl"
     >
       <v-carousel
         v-model="currentIndex"
+        class="carouselProjects carousel-projects"
         direction="vertical"
+        hide-delimiter-background
+        show-arrows="hover"
         vertical-arrows="left"
         vertical-delimiters="right"
-        hide-delimiter-background
-        class="carouselProjects carousel-projects"
-        show-arrows="hover"
       >
         <v-carousel-item
           v-for="(item, i) in carouselItems"
           :key="i"
-          :src="item.img"
-          cover
           class="carousel-projects__slide"
+          cover
+          :src="item.img"
           @click="dialog.openDialog(item)"
         />
 
         <v-overlay
-          :scrim="false"
-          content-class="carousel-projects__overlay-inner"
           contained
+          content-class="carousel-projects__overlay-inner"
           model-value
           no-click-animation
           persistent
+          :scrim="false"
         >
           <div class="carousel-projects__layout d-flex flex-column h-100 w-100">
             <div class="carousel-projects__spacer flex-grow-1" />
-            <v-scroll-x-transition mode="out-in" appear>
+            <v-scroll-x-transition appear mode="out-in">
               <v-sheet
                 :key="currentIndex"
                 class="carousel-projects__info-sheet"
-                rounded="lg"
                 elevation="4"
+                rounded="lg"
               >
                 <v-list-item
+                  class="titleTechCarousel carousel-projects__list-item"
                   :subtitle="currentItem?.tecno"
                   :title="currentItem?.name"
-                  class="titleTechCarousel carousel-projects__list-item"
                 />
               </v-sheet>
             </v-scroll-x-transition>
 
             <div
-              class="carousel-projects__hint"
               aria-hidden="true"
+              class="carousel-projects__hint"
             >
               <span class="carousel-projects__hint-pulse" />
               <v-icon
@@ -75,17 +75,17 @@
 </template>
 
 <script setup>
-import { computed, shallowRef } from "vue"
-import { useI18n } from "vue-i18n"
-import { projects } from "@/data/projects"
-import { useDialogStore } from "@/stores/dialogProjects"
+  import { computed, shallowRef } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { projects } from '@/data/projects'
+  import { useDialogStore } from '@/stores/dialogProjects'
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const currentIndex = shallowRef(0)
-const dialog = useDialogStore()
-const carouselItems = computed(() => projects.slice(0, 5))
-const currentItem = computed(() => carouselItems.value[currentIndex.value] ?? null)
+  const currentIndex = shallowRef(0)
+  const dialog = useDialogStore()
+  const carouselItems = computed(() => projects.slice(0, 5))
+  const currentItem = computed(() => carouselItems.value[currentIndex.value] ?? null)
 </script>
 
 <style scoped lang="scss">

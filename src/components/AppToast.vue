@@ -3,10 +3,10 @@
     <Transition name="toast">
       <div v-if="visible" class="app-toast" :class="`app-toast--${color}`" role="alert">
         <div class="app-toast__icon-wrap">
-          <v-icon size="20" class="app-toast__icon">{{ icon }}</v-icon>
+          <v-icon class="app-toast__icon" size="20">{{ icon }}</v-icon>
         </div>
         <span class="app-toast__message">{{ message }}</span>
-        <button class="app-toast__close" @click="visible = false" aria-label="Fechar">
+        <button aria-label="Fechar" class="app-toast__close" @click="visible = false">
           <v-icon size="16">mdi-close</v-icon>
         </button>
         <div class="app-toast__progress">
@@ -18,41 +18,41 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+  import { computed, ref, watch } from 'vue'
 
-const props = defineProps({
-  modelValue: { type: Boolean, default: false },
-  message: { type: String, default: '' },
-  color: { type: String, default: 'success' },
-  timeout: { type: Number, default: 4000 },
-})
+  const props = defineProps({
+    modelValue: { type: Boolean, default: false },
+    message: { type: String, default: '' },
+    color: { type: String, default: 'success' },
+    timeout: { type: Number, default: 4000 },
+  })
 
-const emit = defineEmits(['update:modelValue'])
+  const emit = defineEmits(['update:modelValue'])
 
-const visible = ref(props.modelValue)
-let timer = null
+  const visible = ref(props.modelValue)
+  let timer = null
 
-const icon = computed(() => {
-  if (props.color === 'success') return 'mdi-check-circle-outline'
-  if (props.color === 'error') return 'mdi-alert-circle-outline'
-  if (props.color === 'warning') return 'mdi-alert-outline'
-  return 'mdi-information-outline'
-})
+  const icon = computed(() => {
+    if (props.color === 'success') return 'mdi-check-circle-outline'
+    if (props.color === 'error') return 'mdi-alert-circle-outline'
+    if (props.color === 'warning') return 'mdi-alert-outline'
+    return 'mdi-information-outline'
+  })
 
-watch(() => props.modelValue, (val) => {
-  visible.value = val
-  if (val) {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      visible.value = false
-      emit('update:modelValue', false)
-    }, props.timeout)
-  }
-})
+  watch(() => props.modelValue, val => {
+    visible.value = val
+    if (val) {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        visible.value = false
+        emit('update:modelValue', false)
+      }, props.timeout)
+    }
+  })
 
-watch(visible, (val) => {
-  if (!val) emit('update:modelValue', false)
-})
+  watch(visible, val => {
+    if (!val) emit('update:modelValue', false)
+  })
 </script>
 
 <style scoped>

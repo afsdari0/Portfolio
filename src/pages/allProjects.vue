@@ -6,16 +6,16 @@
       <main class="index-main all-projects-main">
 
         <section
-          class="all-projects-hero section-animate is-visible"
           aria-labelledby="all-projects-heading"
+          class="all-projects-hero section-animate is-visible"
         >
-.          <h1 id="all-projects-heading" class="h1IndexTitless all-projects-title">Meus projetos</h1>
+          .          <h1 id="all-projects-heading" class="h1IndexTitless all-projects-title">Meus projetos</h1>
           <p class="textSubtitleProjectsPage text-body-2 text-medium-emphasis mt-2 mb-4">
             Explore todos os trabalhos e filtre por categoria.
           </p>
 
           <!-- Stats de rank -->
-          <div class="rank-stats" aria-label="Distribuição por rank">
+          <div aria-label="Distribuição por rank" class="rank-stats">
             <span class="all-projects-total">
               {{ projects.length }} projeto{{ projects.length !== 1 ? 's' : '' }}
             </span>
@@ -40,22 +40,22 @@
 </template>
 
 <script setup>
-import { computed } from "vue"
-import { projects } from "@/data/projects"
+  import { computed } from 'vue'
+  import { projects } from '@/data/projects'
 
-const RANK_META = {
-  S: { icon: "mdi-crown",         label: "Lendário" },
-  A: { icon: "mdi-star",          label: "Épico"    },
-  B: { icon: "mdi-diamond-stone", label: "Raro"     },
-  C: { icon: "mdi-shield",        label: "Comum"    },
-}
+  const RANK_META = {
+    S: { icon: 'mdi-crown', label: 'Lendário' },
+    A: { icon: 'mdi-star', label: 'Épico' },
+    B: { icon: 'mdi-diamond-stone', label: 'Raro' },
+    C: { icon: 'mdi-shield', label: 'Comum' },
+  }
 
-const rankCount = computed(() => {
-  return projects.reduce((acc, p) => {
-    if (p.rank) acc[p.rank] = (acc[p.rank] || 0) + 1
-    return acc
-  }, {})
-})
+  const rankCount = computed(() => {
+    return projects.reduce((acc, p) => {
+      if (p.rank) acc[p.rank] = (acc[p.rank] || 0) + 1
+      return acc
+    }, {})
+  })
 </script>
 
 <style scoped lang="scss">

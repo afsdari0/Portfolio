@@ -22,12 +22,13 @@
     "openMenu": "Open navigation menu"
   },
   "hero": {
-    "badge": "Portfolio · 2025",
+    "role": "Front-end Developer",
     "name": "Dario Ramos",
-    "lead": "Front-end developer — clean interfaces with <strong>Vue</strong> and <strong>Vuetify</strong>, focused on performance and great user experience.",
+    "lead": "Clean interfaces with <strong>Vue</strong> and <strong>Vuetify</strong>, focused on performance and real user experience.",
     "viewProjects": "View projects",
     "contact": "Contact",
-    "scrollHint": "Scroll to explore"
+    "scrollHint": "Scroll to explore",
+    "status": "Available for projects"
   },
   "projects": {
     "title": "Projects",
@@ -47,7 +48,10 @@
     "title": "Skills",
     "lead": "Tap a skill to see level and references.",
     "estimatedLevel": "Estimated level: {level}%",
-    "close": "Close"
+    "close": "Close",
+    "tierAdvanced": "▸ Advanced",
+    "tierIntermediate": "▸ Intermediate",
+    "tierFamiliar": "▸ Familiar"
   },
   "contact": {
     "title": "Contact",
@@ -76,7 +80,11 @@
     "linkSoon": "Project or repository link will be added soon."
   },
   "footer": {
-    "copyright": "© 2025 — Developed by Dario Ramos"
+    "copyright": "© 2025 — Developed by Dario Ramos",
+    "tagline": "Building interfaces that inspire.",
+    "navigation": "Navigation",
+    "connect": "Connect",
+    "madeWith": "Made with Vue.js & Vuetify"
   },
   "filters": {
     "all": "All",

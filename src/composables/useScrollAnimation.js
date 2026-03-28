@@ -1,9 +1,9 @@
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
-export function useScrollAnimation() {
+export function useScrollAnimation () {
   const scrollY = ref(0)
 
-  function onScroll() {
+  function onScroll () {
     scrollY.value = window.scrollY
   }
 

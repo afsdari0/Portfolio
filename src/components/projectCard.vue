@@ -3,45 +3,49 @@
     <div class="filter-chips d-flex w-100 justify-center align-center">
       <v-chip-group
         v-model="selectedCategory"
-        mandatory
-        color="primary"
         class="display-1"
+        color="primary"
         column
+        mandatory
       >
-        <v-chip value="all" variant="outlined" class="ma-1">{{ $t('filters.all') }}</v-chip>
-        <v-chip value="web" variant="outlined" class="ma-1">{{ $t('filters.web') }}</v-chip>
-        <v-chip value="Python" variant="outlined" class="ma-1">{{ $t('filters.python') }}</v-chip>
+        <v-chip class="ma-1" value="all" variant="outlined">{{ $t('filters.all') }}</v-chip>
+        <v-chip class="ma-1" value="web" variant="outlined">{{ $t('filters.web') }}</v-chip>
+        <v-chip class="ma-1" value="Python" variant="outlined">{{ $t('filters.python') }}</v-chip>
       </v-chip-group>
     </div>
 
     <TransitionGroup
+      class="project-card-grid mt-8 mb-8"
       name="card-filter"
       tag="div"
-      class="project-card-grid d-flex flex-row w-100 flex-wrap justify-center mt-8 mb-8"
     >
       <div
         v-for="(project, index) in filteredProjects"
         :key="project.id"
+        :aria-label="`${$t('projects.viewDetails')} - ${project.name}`"
         class="rank-border-wrap"
         :class="`rank-border-wrap--${project.rank}`"
-        :style="{ transitionDelay: index * 60 + 'ms' }"
         role="button"
+        :style="{ transitionDelay: index * 60 + 'ms' }"
         tabindex="0"
-        :aria-label="`${$t('projects.viewDetails')} - ${project.name}`"
         @click="dialog.openDialog(project)"
         @keydown.enter="dialog.openDialog(project)"
         @keydown.space.prevent="dialog.openDialog(project)"
       >
-        <div class="project-card">
+        <div
+          class="project-card"
+          @mouseleave="onCardMouseLeave"
+          @mousemove="onCardMouseMove"
+        >
           <div class="project-card__media">
-            <v-parallax :src="project.img" class="project-card__parallax" />
-            <div class="project-card__shine" aria-hidden="true" />
-            <div class="project-card__gradient" aria-hidden="true" />
+            <v-parallax class="project-card__parallax" :src="project.img" />
+            <div aria-hidden="true" class="project-card__shine" />
+            <div aria-hidden="true" class="project-card__gradient" />
 
             <div
+              :aria-label="`Rank ${RANK_META[project.rank].label}`"
               class="rank-badge"
               :class="`rank-badge--${project.rank}`"
-              :aria-label="`Rank ${RANK_META[project.rank].label}`"
             >
               <v-icon :icon="RANK_META[project.rank].icon" size="14" />
               <span>{{ RANK_META[project.rank].label }}</span>
@@ -71,28 +75,55 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
-import { useI18n } from "vue-i18n"
-import { projects } from "@/data/projects"
-import { useDialogStore } from "@/stores/dialogProjects"
-import { RANK_META } from "@/data/rankMeta"
+  import { computed, onMounted, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { projects } from '@/data/projects'
+  import { RANK_META } from '@/data/rankMeta'
+  import { useDialogStore } from '@/stores/dialogProjects'
 
-const { t } = useI18n()
-const selectedCategory = ref("all")
-const dialog = useDialogStore()
-const projectItems = ref(projects)
+  const { t } = useI18n()
+  const selectedCategory = ref('all')
+  const dialog = useDialogStore()
+  const projectItems = ref(projects)
+  const prefersReducedMotion = ref(false)
 
-const filteredProjects = computed(() => {
-  if (selectedCategory.value === "all") return projectItems.value
-  return projectItems.value.filter((p) => p.category === selectedCategory.value)
-})
+  onMounted(() => {
+    prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  })
+
+  function onCardMouseMove (event) {
+    if (prefersReducedMotion.value) return
+    const el = event.currentTarget
+    const rect = el.getBoundingClientRect()
+    const x = (event.clientX - rect.left) / rect.width - 0.5
+    const y = (event.clientY - rect.top) / rect.height - 0.5
+    el.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-8px) scale(1.02)`
+  }
+
+  function onCardMouseLeave (event) {
+    event.currentTarget.style.transform = ''
+  }
+
+  const filteredProjects = computed(() => {
+    if (selectedCategory.value === 'all') return projectItems.value
+    return projectItems.value.filter(p => p.category === selectedCategory.value)
+  })
 </script>
 
 <style scoped lang="scss">
-/* ---- Grid ---- */
+/* ---- Bento Grid ---- */
 .project-card-grid {
-  gap: 1.5rem !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
   position: relative;
+}
+
+@media (max-width: 599px) {
+  .project-card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---- Rank border wrapper ---- */
@@ -139,11 +170,31 @@ const filteredProjects = computed(() => {
 .rank-border-wrap--B:hover .project-card { box-shadow: 0 0 25px rgba(56, 189, 248, 0.35); }
 .rank-border-wrap--C:hover .project-card { box-shadow: 0 0 18px rgba(148, 163, 184, 0.25); }
 
+/* ---- Bento rank sizing ---- */
+.rank-border-wrap--S {
+  grid-column: span 2;
+  grid-row: span 2;
+
+  @media (max-width: 599px) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+.rank-border-wrap--A {
+  grid-row: span 2;
+
+  @media (max-width: 599px) {
+    grid-row: span 1;
+  }
+}
+
 /* ---- Card ---- */
 .project-card {
   position: relative;
-  height: clamp(20rem, 28vw, 26rem);
-  width: clamp(13rem, 18vw, 17rem);
+  height: 100%;
+  width: 100%;
+  min-height: clamp(18rem, 26vw, 24rem);
   border-radius: 14px;
   overflow: hidden;
   border: none;
@@ -232,6 +283,7 @@ const filteredProjects = computed(() => {
   gap: 0.3rem;
   padding: 0.25rem 0.55rem;
   border-radius: 8px;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -246,16 +298,23 @@ const filteredProjects = computed(() => {
   color: #ffd700;
   background: rgba(255, 215, 0, 0.15);
   border-color: rgba(255, 215, 0, 0.45);
+  clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
+  border: none;
+  padding: 0.35rem 0.7rem;
 }
 .rank-badge--A {
   color: #c084fc;
   background: rgba(192, 132, 252, 0.15);
   border-color: rgba(192, 132, 252, 0.4);
+  clip-path: polygon(8% 0%, 92% 0%, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
+  border: none;
+  padding: 0.3rem 0.65rem;
 }
 .rank-badge--B {
   color: #38bdf8;
   background: rgba(56, 189, 248, 0.15);
   border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.2);
 }
 .rank-badge--C {
   color: #94a3b8;
@@ -311,6 +370,7 @@ const filteredProjects = computed(() => {
 }
 
 .project-card__title {
+  font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
   color: #fff;
@@ -325,6 +385,7 @@ const filteredProjects = computed(() => {
 }
 
 .project-card__tech-chip {
+  font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 600;
   padding: 0.15rem 0.45rem;

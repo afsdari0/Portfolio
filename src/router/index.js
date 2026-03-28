@@ -12,13 +12,13 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     }
     if (to.hash) {
       // Aguarda o DOM da página destino (SPA + transição) antes de rolar até a âncora
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         const tryScroll = () => {
           const el = document.querySelector(to.hash)
           if (el) {
@@ -27,11 +27,17 @@ const router = createRouter({
           }
           return false
         }
-        if (tryScroll()) return
+        if (tryScroll()) {
+          return
+        }
         requestAnimationFrame(() => {
-          if (tryScroll()) return
+          if (tryScroll()) {
+            return
+          }
           setTimeout(() => {
-            if (tryScroll()) return
+            if (tryScroll()) {
+              return
+            }
             resolve({ top: 0, behavior: 'smooth' })
           }, 120)
         })
