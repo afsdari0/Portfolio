@@ -17,7 +17,7 @@
     "@mdi/js": "^7.4.47",
     "pinia": "^3.0.3",
     "vue": "^3.5.17",
-    "vue-i18n": "^12.0.0-alpha.3",
+    "vue-i18n": "^9.14.5",
     "vuetify": "^3.9.1"
   },
   "devDependencies": {
