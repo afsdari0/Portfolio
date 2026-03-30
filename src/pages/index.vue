@@ -247,7 +247,6 @@
                   :model-value="animatedLevel"
                   rounded
                 />
-                <p class="text-caption text-medium-emphasis mb-4">{{ $t('skills.estimatedLevel', { level: Math.round(animatedLevel) }) }}</p>
                 <div class="cert-buttons d-flex flex-wrap ga-3">
                   <v-btn
                     v-for="(cert, i) in selectedSkill.certifications"
