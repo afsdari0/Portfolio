@@ -29,6 +29,9 @@
 
           <div class="hero-panel">
             <div class="hero-content">
+              <div class="hero-logo">
+                <AppLogo animated size="xl" />
+              </div>
               <p class="hero-role">{{ $t('hero.role') }}</p>
               <h1 id="heading-hero" class="hero-title gradient-text">
                 <span class="hero-title--typing">{{ $t('hero.name') }}</span>
@@ -106,7 +109,9 @@
               <v-col class="d-flex justify-center" cols="12" md="5">
                 <div class="about-visual">
                   <div class="about-visual__card">
-                    <div aria-hidden="true" class="about-visual__avatar">DR</div>
+                    <div aria-hidden="true" class="about-visual__avatar">
+                      <AppLogo :animated="aboutVisible" size="lg" />
+                    </div>
                     <p class="about-visual__name">Dario Ramos</p>
                     <p class="about-visual__role">{{ $t('about.role') }}</p>
                     <div class="about-visual__tags">
@@ -353,6 +358,7 @@
   import { computed, ref, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useDisplay } from 'vuetify'
+  import AppLogo from '@/components/AppLogo.vue'
   import AppToast from '@/components/AppToast.vue'
   import carouselProjects from '@/components/carouselProjects.vue'
   import { useScrollAnimation } from '@/composables/useScrollAnimation'

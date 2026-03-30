@@ -9,7 +9,7 @@
           type="button"
           @click="onBrandClick"
         >
-          <span aria-hidden="true" class="site-nav__mark">DR</span>
+          <AppLogo aria-hidden="true" class="site-nav__logo" size="xs" />
           <span class="site-nav__brand-text">Dario Ramos</span>
         </button>
 
@@ -173,6 +173,7 @@
   import { useI18n } from 'vue-i18n'
   import { useRoute, useRouter } from 'vue-router'
   import { useDisplay } from 'vuetify'
+  import AppLogo from '@/components/AppLogo.vue'
   import { useLocaleStore } from '@/stores/locale'
   import { useThemeStore } from '@/stores/theme'
 
@@ -318,20 +319,14 @@
   color: inherit;
 }
 
-.site-nav__mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 10px;
-  font-family: var(--font-heading);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #061018;
-  background: linear-gradient(135deg, var(--accent-teal), #3db892);
+.site-nav__logo {
   flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+
+  &:hover {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 6px var(--accent-teal));
+  }
 }
 
 .site-nav__brand-text {

@@ -417,6 +417,23 @@ body {
   backdrop-filter: none;
 }
 
+.hero-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  animation: heroFadeIn 1s ease both;
+  filter: drop-shadow(0 0 20px rgba(78, 204, 163, 0.25));
+  transition: filter 0.4s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 28px rgba(78, 204, 163, 0.4)) drop-shadow(0 0 56px rgba(91, 111, 255, 0.2));
+  }
+
+  @media (max-width: 600px) {
+    margin-bottom: 1rem;
+  }
+}
+
 .hero-role {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -778,31 +795,14 @@ body {
 }
 
 .about-visual__avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 88px;
+  height: 88px;
   margin: 0 auto 1rem;
-  background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #061018;
-  letter-spacing: -0.03em;
   position: relative;
   z-index: 1;
-
-  /* Spinning ring */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, var(--accent-teal), var(--accent-blue), transparent, var(--accent-teal));
-    animation: avatarRingSpin 4s linear infinite;
-    z-index: -1;
-  }
 }
 
 .about-visual__name {

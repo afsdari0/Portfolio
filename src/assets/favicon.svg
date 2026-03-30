@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ecca3"/>
+      <stop offset="100%" stop-color="#5b6fff"/>
+    </linearGradient>
+    <linearGradient id="fg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5b6fff"/>
+      <stop offset="100%" stop-color="#4ecca3"/>
+    </linearGradient>
+  </defs>
+  <!-- Linhas -->
+  <line x1="10" y1="7"  x2="18" y2="17" stroke="url(#fg)"  stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="18" y1="17" x2="8"  y2="22" stroke="url(#fg2)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="10" y1="7"  x2="24" y2="10" stroke="#4ecca3"   stroke-width="0.9" stroke-linecap="round"/>
+  <line x1="24" y1="10" x2="18" y2="17" stroke="#5b6fff"   stroke-width="0.7" stroke-linecap="round"/>
+  <!-- Nós -->
+  <circle cx="18" cy="17" r="5"   fill="url(#fg)"/>
+  <circle cx="10" cy="7"  r="2.5" fill="#4ecca3"/>
+  <circle cx="8"  cy="22" r="1.5" fill="#5b6fff"/>
+  <circle cx="24" cy="10" r="1"   fill="#4ecca3" opacity="0.85"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d9b6e"/>
+      <stop offset="100%" stop-color="#4a5aef"/>
+    </linearGradient>
+    <linearGradient id="grad-light-line1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d9b6e"/>
+      <stop offset="100%" stop-color="#4a5aef"/>
+    </linearGradient>
+    <linearGradient id="grad-light-line2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a5aef"/>
+      <stop offset="100%" stop-color="#0d9b6e"/>
+    </linearGradient>
+  </defs>
+  <!-- Linhas de conexão -->
+  <line x1="68" y1="48" x2="116" y2="108" stroke="url(#grad-light-line1)" stroke-width="5.5" stroke-linecap="round"/>
+  <line x1="116" y1="108" x2="52" y2="136" stroke="url(#grad-light-line2)" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="68" y1="48" x2="152" y2="66" stroke="#0d9b6e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="152" y1="66" x2="116" y2="108" stroke="#4a5aef" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Nós -->
+  <circle cx="116" cy="108" r="30" fill="url(#grad-light)"/>
+  <circle cx="68" cy="48" r="15" fill="#0d9b6e"/>
+  <circle cx="52" cy="136" r="9" fill="#4a5aef"/>
+  <circle cx="152" cy="66" r="5.5" fill="#0d9b6e" opacity="0.8"/>
+</svg>
