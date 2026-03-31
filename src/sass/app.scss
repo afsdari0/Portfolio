@@ -92,6 +92,7 @@ body {
 
   .section-animate,
   .section-animate--left,
+  .section-animate--right,
   .section-animate--scale,
   .section-animate--blur,
   .skill-col-animate {
@@ -279,6 +280,19 @@ body {
 .section-animate--left {
   opacity: 0;
   transform: translateX(-40px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.section-animate--right {
+  opacity: 0;
+  transform: translateX(40px);
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);

@@ -68,8 +68,21 @@
   },
   "allProjects": {
     "title": "My projects",
-    "subtitle": "Explore all work and filter by category.",
-    "projectCount": "{count} project | {count} projects"
+    "subtitle": "A curated collection of my development work.",
+    "projectCount": "{count} project | {count} projects",
+    "scrollToExplore": "Scroll to explore",
+    "spotlightTitle": "Spotlight",
+    "spotlightLead": "Flagship projects that define my craft.",
+    "editorialTitle": "Featured",
+    "editorialLead": "Projects with strong technical depth.",
+    "catalogTitle": "Catalog",
+    "catalogLead": "The complete collection.",
+    "viewDetails": "View details",
+    "statsTotal": "Total projects",
+    "statsTopTier": "Top tier",
+    "statsCategories": "Categories",
+    "noResults": "No projects match this filter.",
+    "backToHub": "Back to hub"
   },
   "carousel": {
     "hint": "Tap to view project"

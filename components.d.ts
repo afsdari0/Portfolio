@@ -11,12 +11,17 @@ declare module 'vue' {
     AppLogo: typeof import('./src/components/AppLogo.vue')['default']
     AppToast: typeof import('./src/components/AppToast.vue')['default']
     CarouselProjects: typeof import('./src/components/carouselProjects.vue')['default']
+    CatalogCard: typeof import('./src/components/allProjects/CatalogCard.vue')['default']
     DialogProjects: typeof import('./src/components/dialogProjects.vue')['default']
+    EditorialCard: typeof import('./src/components/allProjects/EditorialCard.vue')['default']
     Footer: typeof import('./src/components/footer.vue')['default']
     ProjectCard: typeof import('./src/components/projectCard.vue')['default']
+    RankDistributionBar: typeof import('./src/components/allProjects/RankDistributionBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SiteNav: typeof import('./src/components/SiteNav.vue')['default']
     SocialIcons: typeof import('./src/components/socialIcons.vue')['default']
+    SpotlightCard: typeof import('./src/components/allProjects/SpotlightCard.vue')['default']
+    StickyFilterBar: typeof import('./src/components/allProjects/StickyFilterBar.vue')['default']
   }
 }

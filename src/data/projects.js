@@ -28,7 +28,7 @@ export const projects = [
     },
     img: new URL('@/assets/geradorDeSenha.png', import.meta.url).href,
     category: 'web',
-    rank: 'B',
+    rank: 'C',
     techStack: ['JavaScript', 'CSS'],
     featured: true,
     link: 'https://github.com/afsdari0',

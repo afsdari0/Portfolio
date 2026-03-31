@@ -68,8 +68,21 @@
   },
   "allProjects": {
     "title": "Meus projetos",
-    "subtitle": "Explore todos os trabalhos e filtre por categoria.",
-    "projectCount": "{count} projeto | {count} projetos"
+    "subtitle": "Uma coleção curada do meu trabalho de desenvolvimento.",
+    "projectCount": "{count} projeto | {count} projetos",
+    "scrollToExplore": "Role para explorar",
+    "spotlightTitle": "Spotlight",
+    "spotlightLead": "Projetos flagship que definem meu trabalho.",
+    "editorialTitle": "Destaque",
+    "editorialLead": "Projetos com profundidade técnica sólida.",
+    "catalogTitle": "Catálogo",
+    "catalogLead": "A coleção completa.",
+    "viewDetails": "Ver detalhes",
+    "statsTotal": "Total de projetos",
+    "statsTopTier": "Tier mais alto",
+    "statsCategories": "Categorias",
+    "noResults": "Nenhum projeto encontrado para este filtro.",
+    "backToHub": "Voltar ao hub"
   },
   "carousel": {
     "hint": "Toque para ver o projeto"

@@ -6,17 +6,29 @@
   >
     <svg
       class="app-logo__svg"
-      xmlns="http://www.w3.org/2000/svg"
+      :height="pxSize"
       viewBox="0 0 200 200"
       :width="pxSize"
-      :height="pxSize"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient :id="`logo-grad-${uid}`" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient
+          :id="`logo-grad-${uid}`"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
           <stop offset="0%" :stop-color="colors.primary" />
           <stop offset="100%" :stop-color="colors.secondary" />
         </linearGradient>
-        <linearGradient :id="`logo-grad2-${uid}`" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient
+          :id="`logo-grad2-${uid}`"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
           <stop offset="0%" :stop-color="colors.secondary" />
           <stop offset="100%" :stop-color="colors.primary" />
         </linearGradient>
@@ -24,48 +36,73 @@
       <!-- Lines -->
       <line
         class="app-logo__line app-logo__line--1"
-        x1="68" y1="48" x2="116" y2="108"
         :stroke="`url(#logo-grad-${uid})`"
-        stroke-width="5.5" stroke-linecap="round"
+        stroke-linecap="round"
+        stroke-width="5.5"
+        x1="68"
+        x2="116"
+        y1="48"
+        y2="108"
       />
       <line
         class="app-logo__line app-logo__line--2"
-        x1="116" y1="108" x2="52" y2="136"
         :stroke="`url(#logo-grad2-${uid})`"
-        stroke-width="2.8" stroke-linecap="round"
+        stroke-linecap="round"
+        stroke-width="2.8"
+        x1="116"
+        x2="52"
+        y1="108"
+        y2="136"
       />
       <line
         class="app-logo__line app-logo__line--3"
-        x1="68" y1="48" x2="152" y2="66"
         :stroke="colors.primary"
-        stroke-width="2" stroke-linecap="round"
+        stroke-linecap="round"
+        stroke-width="2"
+        x1="68"
+        x2="152"
+        y1="48"
+        y2="66"
       />
       <line
         class="app-logo__line app-logo__line--4"
-        x1="152" y1="66" x2="116" y2="108"
         :stroke="colors.secondary"
-        stroke-width="1.5" stroke-linecap="round"
+        stroke-linecap="round"
+        stroke-width="1.5"
+        x1="152"
+        x2="116"
+        y1="66"
+        y2="108"
       />
       <!-- Nodes -->
       <circle
         class="app-logo__node app-logo__node--main"
-        cx="116" cy="108" r="30"
+        cx="116"
+        cy="108"
         :fill="`url(#logo-grad-${uid})`"
+        r="30"
       />
       <circle
         class="app-logo__node app-logo__node--secondary"
-        cx="68" cy="48" r="15"
+        cx="68"
+        cy="48"
         :fill="colors.primary"
+        r="15"
       />
       <circle
         class="app-logo__node app-logo__node--tertiary"
-        cx="52" cy="136" r="9"
+        cx="52"
+        cy="136"
         :fill="colors.secondary"
+        r="9"
       />
       <circle
         class="app-logo__node app-logo__node--dot"
-        cx="152" cy="66" r="5.5"
-        :fill="colors.primary" opacity="0.8"
+        cx="152"
+        cy="66"
+        :fill="colors.primary"
+        opacity="0.8"
+        r="5.5"
       />
     </svg>
   </div>
