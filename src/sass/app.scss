@@ -225,6 +225,42 @@ body {
   flex-direction: column;
 }
 
+/* Separador gradiente entre seções — dissolve nas pontas */
+.section-separator {
+  width: 100%;
+  max-width: 600px;
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-accent) 30%,
+    var(--accent-teal) 50%,
+    var(--border-accent) 70%,
+    transparent 100%
+  );
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* Variante reforçada para a transição hero → projetos */
+.section-separator--hero {
+  max-width: 900px;
+  height: 2px;
+  opacity: 0.6;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-teal) 20%,
+    var(--accent-blue) 50%,
+    var(--accent-teal) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 12px var(--glow-teal),
+    0 0 32px var(--glow-blue);
+}
+
 /* ---- Section dividers ---- */
 .section-divider {
   width: 100%;
@@ -360,20 +396,29 @@ body {
    ============================================================ */
 .site-section--hero {
   position: relative;
-  height: calc(100dvh - clamp(4.75rem, 10vw, 5.75rem));
   min-height: 560px;
   max-height: none !important;
   justify-content: center;
   align-items: center;
-  padding: clamp(1.5rem, 4vw, 3rem) 0 5rem;
 
-  /* Smooth bottom fade into page background */
+  /* Escapar do indexContainer (max-width: 1200px) para cobrir a viewport inteira */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  overflow: hidden;
+
+  /* Subir para cobrir a área da navbar — hero ocupa a viewport inteira */
+  margin-top: calc(-1 * clamp(4.75rem, 10vw, 5.75rem));
+  height: 100dvh;
+  padding: clamp(4.75rem, 10vw, 5.75rem) 0 5rem; /* padding-top compensa a navbar */
+  padding-top: calc(clamp(4.75rem, 10vw, 5.75rem) + clamp(1.5rem, 4vw, 3rem));
+
+  /* Smooth bottom fade into page background — full viewport width */
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: -10%;
-    right: -10%;
+    left: 0;
+    right: 0;
     height: 220px;
     background: linear-gradient(to bottom, transparent, var(--bg-primary));
     pointer-events: none;
@@ -682,12 +727,17 @@ body {
 
 .section-lead {
   text-align: center;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: clamp(0.85rem, 2.2vw, 1rem);
   font-weight: 500;
   max-width: 36rem;
   margin: -0.5rem auto 1.5rem;
   line-height: 1.65;
+
+  strong {
+    color: var(--text-strong);
+    font-weight: 700;
+  }
 }
 
 /* ============================================================
@@ -701,19 +751,6 @@ body {
   width: 100%;
 }
 
-.divCarroselProjects {
-  margin-top: 0.5rem;
-  width: min(100%, 560px);
-}
-
-.divIndexProjects .carouselProjects {
-  height: clamp(240px, 45vw, 320px) !important;
-  width: 100% !important;
-
-  .titleTechCarousel {
-    padding: 0.6rem 1.3rem !important;
-  }
-}
 
 /* ============================================================
    SOBRE
@@ -721,12 +758,6 @@ body {
 .containerAbout {
   position: relative;
   overflow: hidden;
-  background: var(--section-alt-bg);
-  border-radius: 0;
-  margin-left: calc(-1 * clamp(0.75rem, 3vw, 1.5rem));
-  margin-right: calc(-1 * clamp(0.75rem, 3vw, 1.5rem));
-  padding-left: clamp(0.75rem, 3vw, 1.5rem);
-  padding-right: clamp(0.75rem, 3vw, 1.5rem);
 
   &::before {
     content: '\201C';
@@ -1087,11 +1118,6 @@ body {
 .site-section--contact {
   padding-bottom: clamp(3rem, 10vh, 6rem) !important;
   margin-bottom: clamp(0.5rem, 2vh, 1.5rem);
-  background: var(--section-alt-bg);
-  margin-left: calc(-1 * clamp(0.75rem, 3vw, 1.5rem));
-  margin-right: calc(-1 * clamp(0.75rem, 3vw, 1.5rem));
-  padding-left: clamp(0.75rem, 3vw, 1.5rem);
-  padding-right: clamp(0.75rem, 3vw, 1.5rem);
 }
 
 .contact-wrapper {
@@ -1184,7 +1210,6 @@ body {
 
 .glow-btn {
   border-radius: 12px;
-  padding: 0.85rem 2rem;
   font-weight: 600;
   color: var(--text-primary);
   background: var(--bg-card);
@@ -1216,6 +1241,26 @@ body {
 
   &:active {
     transform: translateY(0) scale(0.98);
+  }
+}
+
+.glow-btn--primary {
+  background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue)) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  &::before {
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: transparent !important;
+    box-shadow:
+      0 8px 28px var(--glow-teal),
+      0 4px 16px var(--glow-blue);
   }
 }
 
@@ -1448,10 +1493,6 @@ footer {
    MOBILE
    ============================================================ */
 @media (max-width: 768px) {
-  .divCarroselProjects {
-    width: 100% !important;
-  }
-
   .site-section {
     min-height: unset;
   }

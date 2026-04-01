@@ -66,6 +66,8 @@
           </div>
         </section>
 
+        <div aria-hidden="true" class="section-separator section-separator--hero" />
+
         <!-- ===== PROJETOS ===== -->
         <section
           id="projetos"
@@ -75,21 +77,20 @@
           :class="{ 'is-visible': projectsVisible }"
         >
           <h2 id="heading-projetos" class="h1IndexTitless section-heading--secondary">{{ $t('projects.title') }}</h2>
-          <p class="section-lead">
-            {{ $t('projects.lead') }}
-          </p>
+          <p class="section-lead" v-html="$t('projects.lead')" />
           <div class="divIndexProjects d-flex justify-center align-center flex-column">
-            <div class="divCarroselProjects">
-              <carouselProjects />
-            </div>
+            <carouselProjects :visible="projectsVisible" />
             <v-btn
-              class="glow-btn mb-5 mt-4 d-flex justify-center align-center"
+              class="glow-btn glow-btn--primary mb-5 mt-4"
               @click="$router.push('/allProjects')"
             >
               {{ $t('projects.exploreWork') }}
+              <v-icon class="ml-2" size="18">mdi-arrow-right</v-icon>
             </v-btn>
           </div>
         </section>
+
+        <div aria-hidden="true" class="section-separator" />
 
         <!-- ===== SOBRE ===== -->
         <section
@@ -102,7 +103,7 @@
           <div aria-hidden="true" class="section-deco section-deco--circle" />
 
           <h2 id="heading-sobre" class="h1IndexTitless section-heading--secondary">{{ $t('about.title') }}</h2>
-          <p class="section-lead">{{ $t('about.lead') }}</p>
+          <p class="section-lead" v-html="$t('about.lead')" />
 
           <v-container class="w-100 pa-3">
             <v-row align="start" class="about-row" justify="center">
@@ -137,6 +138,8 @@
           </v-container>
         </section>
 
+        <div aria-hidden="true" class="section-separator" />
+
         <!-- ===== HABILIDADES ===== -->
         <section
           id="habilidades"
@@ -148,7 +151,7 @@
           <div aria-hidden="true" class="section-deco section-deco--hexagon" />
 
           <h2 id="heading-skills" class="h1IndexTitless section-heading--secondary">{{ $t('skills.title') }}</h2>
-          <p class="section-lead">{{ $t('skills.lead') }}</p>
+          <p class="section-lead" v-html="$t('skills.lead')" />
 
           <v-container class="skills-section py-8 py-md-12">
             <!-- SVG gradient definition -->
@@ -264,6 +267,8 @@
           </v-container>
         </section>
 
+        <div aria-hidden="true" class="section-separator" />
+
         <!-- ===== CONTATO ===== -->
         <section
           id="contato"
@@ -273,7 +278,7 @@
           :class="{ 'is-visible': contactVisible }"
         >
           <h2 id="heading-contato" class="h1IndexTitless section-heading--secondary">{{ $t('contact.title') }}</h2>
-          <p class="section-lead">{{ $t('contact.lead') }}</p>
+          <p class="section-lead" v-html="$t('contact.lead')" />
 
           <v-container class="contact-wrapper">
             <v-row align="stretch" class="ga-4" justify="center">

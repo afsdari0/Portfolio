@@ -32,13 +32,13 @@
   },
   "projects": {
     "title": "Projects",
-    "lead": "Highlights in the carousel; the full list gathers all work.",
-    "exploreWork": "Explore work",
+    "lead": "A selection of my <strong>best work</strong> — each one with real challenges and solutions built from scratch.",
+    "exploreWork": "View all projects",
     "viewDetails": "View details"
   },
   "about": {
     "title": "About me",
-    "lead": "A bit about my journey and what I look for in each project.",
+    "lead": "Where I come from, what drives me, and how I approach every <strong>line of code</strong>.",
     "role": "Front-end Developer",
     "p1": "I'm a front-end developer passionate about building modern, responsive, and functional interfaces. I have experience with <strong>Vue.js</strong>, <strong>Vuetify</strong>, and other web ecosystem technologies, always striving to combine performance, design, and usability.",
     "p2": "My focus is turning ideas into professional digital experiences, combining <strong>best development practices</strong> with <strong>innovative design</strong>. I enjoy working on projects that deliver real impact to people and businesses.",
@@ -46,7 +46,7 @@
   },
   "skills": {
     "title": "Skills",
-    "lead": "Tap a skill to see level and references.",
+    "lead": "The technologies I work with daily — tap to see <strong>details and certifications</strong>.",
     "estimatedLevel": "Estimated level: {level}%",
     "close": "Close",
     "tierAdvanced": "▸ Advanced",
@@ -55,7 +55,7 @@
   },
   "contact": {
     "title": "Contact",
-    "lead": "Send a message or reach out through socials.",
+    "lead": "Have a project in mind? <strong>Let's talk</strong> — I reply within 24h.",
     "cta": "Let's talk?",
     "ctaLead": "I'm available for new projects, freelance work, or just a good exchange of ideas.",
     "nameLabel": "Your name",

@@ -32,13 +32,13 @@
   },
   "projects": {
     "title": "Projetos",
-    "lead": "Destaques no carrossel; a lista completa reúne todos os trabalhos.",
-    "exploreWork": "Explorar portfólio",
+    "lead": "Uma seleção dos meus <strong>melhores trabalhos</strong> — cada um com desafios reais e soluções pensadas do zero.",
+    "exploreWork": "Ver todos os projetos",
     "viewDetails": "Ver detalhes"
   },
   "about": {
     "title": "Sobre mim",
-    "lead": "Um pouco da minha trajetória e do que busco em cada projeto.",
+    "lead": "De onde vim, o que me move e como penso cada <strong>linha de código</strong>.",
     "role": "Front-end Developer",
     "p1": "Sou um desenvolvedor front-end apaixonado por criar interfaces modernas, responsivas e funcionais. Tenho experiência em <strong>Vue.js</strong>, <strong>Vuetify</strong> e outras tecnologias do ecossistema web, sempre buscando unir performance, design e usabilidade.",
     "p2": "Meu foco é transformar ideias em experiências digitais profissionais, combinando <strong>boas práticas de desenvolvimento</strong> com <strong>design inovador</strong>. Gosto de trabalhar em projetos que tragam impacto real para as pessoas e empresas.",
@@ -46,7 +46,7 @@
   },
   "skills": {
     "title": "Habilidades",
-    "lead": "Toque em uma skill para ver nível e referências.",
+    "lead": "As tecnologias que domino no dia a dia — toque para ver <strong>detalhes e certificações</strong>.",
     "estimatedLevel": "Nível estimado: {level}%",
     "close": "Fechar",
     "tierAdvanced": "▸ Avançado",
@@ -55,7 +55,7 @@
   },
   "contact": {
     "title": "Contato",
-    "lead": "Envie uma mensagem ou fale comigo pelas redes.",
+    "lead": "Tem um projeto em mente? <strong>Vamos conversar</strong> — respondo em até 24h.",
     "cta": "Vamos conversar?",
     "ctaLead": "Estou disponível para novos projetos, freelances ou apenas uma boa troca de ideias.",
     "nameLabel": "Seu nome",
