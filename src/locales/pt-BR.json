@@ -22,9 +22,9 @@
     "openMenu": "Abrir menu de navegação"
   },
   "hero": {
-    "role": "Front-end Developer",
+    "role": "Desenvolvedor Web",
     "name": "Dario Ramos",
-    "lead": "Interfaces claras com <strong>Vue</strong> e <strong>Vuetify</strong>, focadas em performance e experiência real para quem usa.",
+    "lead": "Aplicações web com <strong>Vue</strong> e <strong>Vuetify</strong>, focadas em performance, usabilidade e soluções que funcionam de ponta a ponta.",
     "viewProjects": "Ver projetos",
     "contact": "Contato",
     "scrollHint": "Role para ver",
@@ -39,10 +39,10 @@
   "about": {
     "title": "Sobre mim",
     "lead": "De onde vim, o que me move e como penso cada <strong>linha de código</strong>.",
-    "role": "Front-end Developer",
-    "p1": "Sou um desenvolvedor front-end apaixonado por criar interfaces modernas, responsivas e funcionais. Tenho experiência em <strong>Vue.js</strong>, <strong>Vuetify</strong> e outras tecnologias do ecossistema web, sempre buscando unir performance, design e usabilidade.",
-    "p2": "Meu foco é transformar ideias em experiências digitais profissionais, combinando <strong>boas práticas de desenvolvimento</strong> com <strong>design inovador</strong>. Gosto de trabalhar em projetos que tragam impacto real para as pessoas e empresas.",
-    "p3": "Além de programar, valorizo a aprendizagem contínua e o trabalho em equipe, acreditando que compartilhar conhecimento é essencial para crescer na área de tecnologia."
+    "role": "Desenvolvedor Web",
+    "p1": "Sou um desenvolvedor web com base sólida em front-end e visão de aplicação completa. Tenho experiência em <strong>Vue.js</strong>, <strong>Vuetify</strong> e no ecossistema JavaScript, e venho expandindo minha atuação para <strong>APIs</strong>, banco de dados e lógica de servidor.",
+    "p2": "Meu foco é transformar ideias em <strong>produtos web completos</strong> — do layout responsivo à integração com serviços e dados. Gosto de trabalhar em projetos que tragam <strong>impacto real</strong> para as pessoas e empresas.",
+    "p3": "Valorizo a aprendizagem contínua e o trabalho em equipe. Cada projeto é uma chance de ir além do que já sei — seja dominando uma nova ferramenta no back-end ou refinando a experiência no front."
   },
   "skills": {
     "title": "Habilidades",
@@ -94,7 +94,7 @@
   },
   "footer": {
     "copyright": "© 2025 — Dario Ramos",
-    "tagline": "Construindo interfaces que inspiram.",
+    "tagline": "Construindo para a web, do front ao back.",
     "navigation": "Navegação",
     "connect": "Redes",
     "madeWith": "Feito com Vue.js & Vuetify"
