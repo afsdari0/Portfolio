@@ -162,8 +162,7 @@
   top: 8px;
   right: 8px;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.35) !important;
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.55) !important;
 }
 
 .project-dialog__hero-text {
@@ -190,7 +189,6 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  backdrop-filter: blur(10px);
   border: 1px solid;
 
   span { line-height: 1; }
@@ -198,22 +196,22 @@
 
 .dialog-rank-badge--S {
   color: #ffd700;
-  background: rgba(255, 215, 0, 0.15);
+  background: rgba(255, 215, 0, 0.35);
   border-color: rgba(255, 215, 0, 0.45);
 }
 .dialog-rank-badge--A {
   color: #c084fc;
-  background: rgba(192, 132, 252, 0.15);
+  background: rgba(192, 132, 252, 0.35);
   border-color: rgba(192, 132, 252, 0.4);
 }
 .dialog-rank-badge--B {
   color: #38bdf8;
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(56, 189, 248, 0.35);
   border-color: rgba(56, 189, 248, 0.4);
 }
 .dialog-rank-badge--C {
   color: #94a3b8;
-  background: rgba(148, 163, 184, 0.12);
+  background: rgba(148, 163, 184, 0.3);
   border-color: rgba(148, 163, 184, 0.35);
 }
 

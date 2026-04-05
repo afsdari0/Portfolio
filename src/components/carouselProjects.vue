@@ -58,9 +58,10 @@
 </template>
 
 <script setup>
-  import { computed, onMounted, ref } from 'vue'
+  import { computed, ref } from 'vue'
   import { projects } from '@/data/projects'
   import { RANK_META } from '@/data/rankMeta'
+  import { useCardTilt } from '@/composables/useCardTilt'
   import { useDialogStore } from '@/stores/dialogProjects'
 
   defineProps({
@@ -74,26 +75,7 @@
     return RANK_META[rank]?.icon ?? 'mdi-shield'
   }
 
-  /* ---- 3D tilt (desktop only) ---- */
-  const prefersReducedMotion = ref(false)
-
-  onMounted(() => {
-    prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  })
-
-  function onMouseMove (event) {
-    if (prefersReducedMotion.value) return
-    if (window.innerWidth < 600) return
-    const el = event.currentTarget
-    const rect = el.getBoundingClientRect()
-    const x = (event.clientX - rect.left) / rect.width - 0.5
-    const y = (event.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`
-  }
-
-  function onMouseLeave (event) {
-    event.currentTarget.style.transform = ''
-  }
+  const { onMouseMove, onMouseLeave } = useCardTilt({ maxDeg: 8 })
 
   /* ---- Mobile scroll tracking for dots ---- */
   const trackRef = ref(null)
@@ -321,7 +303,6 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  backdrop-filter: blur(10px);
   border: 1px solid;
 
   span { line-height: 1; }
@@ -329,7 +310,7 @@
 
 .featured-card__rank-badge--S {
   color: #ffd700;
-  background: rgba(255, 215, 0, 0.15);
+  background: rgba(255, 215, 0, 0.35);
   border-color: rgba(255, 215, 0, 0.45);
   clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
   border: none;
@@ -337,7 +318,7 @@
 }
 .featured-card__rank-badge--A {
   color: #c084fc;
-  background: rgba(192, 132, 252, 0.15);
+  background: rgba(192, 132, 252, 0.35);
   border-color: rgba(192, 132, 252, 0.4);
   clip-path: polygon(8% 0%, 92% 0%, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
   border: none;
@@ -345,13 +326,13 @@
 }
 .featured-card__rank-badge--B {
   color: #38bdf8;
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(56, 189, 248, 0.35);
   border-color: rgba(56, 189, 248, 0.4);
   box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.2);
 }
 .featured-card__rank-badge--C {
   color: #94a3b8;
-  background: rgba(148, 163, 184, 0.12);
+  background: rgba(148, 163, 184, 0.3);
   border-color: rgba(148, 163, 184, 0.35);
 }
 

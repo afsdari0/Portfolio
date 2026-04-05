@@ -59,9 +59,10 @@
 </template>
 
 <script setup>
-  import { computed, onMounted, ref } from 'vue'
+  import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { RANK_META } from '@/data/rankMeta'
+  import { useCardTilt } from '@/composables/useCardTilt'
   import { useDialogStore } from '@/stores/dialogProjects'
   import { useLocaleStore } from '@/stores/locale'
 
@@ -74,11 +75,6 @@
   const dialog = useDialogStore()
   const localeStore = useLocaleStore()
   const mediaRef = ref(null)
-  const prefersReducedMotion = ref(false)
-
-  onMounted(() => {
-    prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  })
 
   const localizedAbout = computed(() => {
     const about = props.project.about
@@ -86,18 +82,11 @@
     return about?.[localeStore.locale] || about?.['pt-BR'] || ''
   })
 
-  function onMouseMove (e) {
-    if (prefersReducedMotion.value) return
-    const el = e.currentTarget
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(1000px) rotateY(${x * 3}deg) rotateX(${-y * 3}deg) translateY(-8px)`
-  }
-
-  function onMouseLeave (e) {
-    e.currentTarget.style.transform = ''
-  }
+  const { onMouseMove, onMouseLeave } = useCardTilt({
+    maxDeg: 3,
+    perspective: 1000,
+    extraTransform: 'translateY(-8px)',
+  })
 </script>
 
 <style scoped lang="scss">
@@ -120,10 +109,12 @@
     );
     background-size: 400% 400%;
     animation: spotBorderSpin 3s linear infinite, spotBorderPulse 2s ease-in-out infinite;
+    animation-play-state: paused;
     z-index: 0;
   }
 
   &:hover::before {
+    animation-play-state: running;
     animation-duration: 1.2s, 1s;
   }
 }
@@ -264,9 +255,8 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  backdrop-filter: blur(10px);
   color: #ffd700;
-  background: rgba(255, 215, 0, 0.15);
+  background: rgba(255, 215, 0, 0.35);
   clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
   border: none;
   animation: spotBadgeGlow 2s ease-in-out infinite;

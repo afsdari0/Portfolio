@@ -75,13 +75,20 @@
     nextTick(updateIndicator)
   })
 
+  let resizeTimer
+  function debouncedUpdateIndicator () {
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(updateIndicator, 150)
+  }
+
   onMounted(() => {
     nextTick(updateIndicator)
-    window.addEventListener('resize', updateIndicator, { passive: true })
+    window.addEventListener('resize', debouncedUpdateIndicator, { passive: true })
   })
 
   onUnmounted(() => {
-    window.removeEventListener('resize', updateIndicator)
+    window.removeEventListener('resize', debouncedUpdateIndicator)
+    clearTimeout(resizeTimer)
   })
 </script>
 

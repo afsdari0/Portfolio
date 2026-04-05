@@ -66,9 +66,10 @@
 </template>
 
 <script setup>
-  import { computed, onMounted, ref } from 'vue'
+  import { computed } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { RANK_META } from '@/data/rankMeta'
+  import { useCardTilt } from '@/composables/useCardTilt'
   import { useDialogStore } from '@/stores/dialogProjects'
   import { useLocaleStore } from '@/stores/locale'
 
@@ -81,11 +82,6 @@
   const { t } = useI18n()
   const dialog = useDialogStore()
   const localeStore = useLocaleStore()
-  const prefersReducedMotion = ref(false)
-
-  onMounted(() => {
-    prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  })
 
   const localizedAbout = computed(() => {
     const about = props.project.about
@@ -93,18 +89,11 @@
     return about?.[localeStore.locale] || about?.['pt-BR'] || ''
   })
 
-  function onMouseMove (e) {
-    if (prefersReducedMotion.value) return
-    const el = e.currentTarget
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-6px)`
-  }
-
-  function onMouseLeave (e) {
-    e.currentTarget.style.transform = ''
-  }
+  const { onMouseMove, onMouseLeave } = useCardTilt({
+    maxDeg: 4,
+    perspective: 800,
+    extraTransform: 'translateY(-6px)',
+  })
 </script>
 
 <style scoped lang="scss">
@@ -132,7 +121,9 @@
     135deg, #ffd700, #ff6b35, #ff0080, #a855f7, #4ecca3, #5b6fff, #ffd700
   );
   animation: borderSpin 3s linear infinite, borderPulse 2s ease-in-out infinite;
+  animation-play-state: paused;
 }
+.editorial-wrap--S:hover::before { animation-play-state: running; }
 .editorial-wrap--S:hover::before { animation-duration: 1.2s, 1s; }
 
 /* ── A tier border ── */
@@ -141,7 +132,9 @@
     135deg, #c084fc, #818cf8, #5b6fff, #4ecca3, #818cf8, #c084fc
   );
   animation: borderSpin 5s linear infinite, borderPulse 3s ease-in-out infinite;
+  animation-play-state: paused;
 }
+.editorial-wrap--A:hover::before { animation-play-state: running; }
 .editorial-wrap--A:hover::before { animation-duration: 2s, 1.5s; }
 
 /* ── B tier border ── */
@@ -150,7 +143,9 @@
     135deg, #38bdf8, #4ecca3, #0ea5e9, #5b6fff, #38bdf8
   );
   animation: borderSpin 7s linear infinite, borderPulse 4s ease-in-out infinite;
+  animation-play-state: paused;
 }
+.editorial-wrap--B:hover::before { animation-play-state: running; }
 .editorial-wrap--B:hover::before { animation-duration: 3s, 2s; }
 
 /* ── C tier border ── */
@@ -159,7 +154,9 @@
     135deg, #94a3b8, #64748b, #475569, #94a3b8
   );
   animation: borderSpin 10s linear infinite, borderPulse 5s ease-in-out infinite;
+  animation-play-state: paused;
 }
+.editorial-wrap--C:hover::before { animation-play-state: running; }
 .editorial-wrap--C:hover::before { animation-duration: 5s, 3s; }
 
 /* Reversed layout */
@@ -344,14 +341,13 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  backdrop-filter: blur(10px);
   z-index: 2;
   border: none;
 }
 
 .rank-badge--S {
   color: #ffd700;
-  background: rgba(255, 215, 0, 0.15);
+  background: rgba(255, 215, 0, 0.35);
   clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
   padding: 0.35rem 0.7rem;
   animation: badgeGlow 2s ease-in-out infinite;
@@ -360,7 +356,7 @@
 
 .rank-badge--A {
   color: #c084fc;
-  background: rgba(192, 132, 252, 0.15);
+  background: rgba(192, 132, 252, 0.35);
   clip-path: polygon(8% 0%, 92% 0%, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
   animation: badgeGlow 2.5s ease-in-out infinite;
   --badge-glow-color: rgba(192, 132, 252, 0.2);
@@ -368,7 +364,7 @@
 
 .rank-badge--B {
   color: #38bdf8;
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(56, 189, 248, 0.35);
   border-radius: 8px;
   border: 1px solid rgba(56, 189, 248, 0.3) !important;
   animation: badgeGlow 3s ease-in-out infinite;
@@ -377,7 +373,7 @@
 
 .rank-badge--C {
   color: #94a3b8;
-  background: rgba(148, 163, 184, 0.12);
+  background: rgba(148, 163, 184, 0.3);
   border-radius: 8px;
   border: 1px solid rgba(148, 163, 184, 0.25) !important;
 }

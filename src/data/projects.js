@@ -7,7 +7,7 @@ export const projects = [
       'pt-BR': 'Automação de tarefas para Tibia com scripts em Python, foco em eficiência e controle. Inclui rotinas configuráveis e integração com o ambiente do jogo.',
       'en': 'Task automation for Tibia using Python scripts, focused on efficiency and control. Includes configurable routines and game environment integration.',
     },
-    img: new URL('@/assets/tibiaBot.png', import.meta.url).href,
+    img: new URL('@/assets/tibiaBot.webp', import.meta.url).href,
     category: 'Python',
     rank: 'A',
     techStack: ['Python', 'Automação'],

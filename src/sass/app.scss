@@ -11,6 +11,7 @@
   --bg-gradient: linear-gradient(160deg, #080c14 0%, #0e1524 40%, #121c2e 70%, #0a0f1a 100%);
   --bg-card: rgba(15, 20, 40, 0.45);
   --bg-glass: rgba(10, 14, 24, 0.78);
+  --bg-glass-solid: rgba(10, 14, 24, 0.92);
   --bg-input: rgba(15, 20, 40, 0.75);
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-accent: rgba(78, 204, 163, 0.35);
@@ -44,6 +45,7 @@
   --bg-gradient: linear-gradient(160deg, #f5f7fa 0%, #e8ecf2 40%, #dde3ed 70%, #f0f2f5 100%);
   --bg-card: rgba(255, 255, 255, 0.75);
   --bg-glass: rgba(255, 255, 255, 0.82);
+  --bg-glass-solid: rgba(245, 247, 250, 0.94);
   --bg-input: rgba(240, 242, 248, 0.9);
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-accent: rgba(13, 155, 110, 0.3);
@@ -158,6 +160,7 @@ body {
   inset: -50%;
   width: 200%;
   height: 200%;
+  will-change: transform;
   background-image:
     radial-gradient(2px 2px at 10% 20%, var(--particle-color), transparent),
     radial-gradient(2px 2px at 30% 60%, var(--particle-color), transparent),
@@ -186,6 +189,25 @@ body {
     radial-gradient(4px 4px at 65% 75%, var(--particle-color), transparent),
     radial-gradient(3px 3px at 85% 20%, var(--particle-color), transparent);
   background-size: 800px 800px;
+}
+
+/* ---- Mobile: reduce particle/animation cost ---- */
+@media (max-width: 768px) {
+  .appBg::before {
+    animation-duration: 96s;
+  }
+
+  .app-particles__layer {
+    animation-duration: 240s;
+  }
+
+  .app-particles__layer--fast {
+    animation-duration: 160s;
+  }
+
+  .app-particles__layer--large {
+    display: none;
+  }
 }
 
 /* ---- Layout shell ---- */
@@ -431,6 +453,7 @@ body {
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 .hero-orb--teal {
@@ -583,6 +606,11 @@ body {
     height: 200%;
     background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
     animation: shimmer 3s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+
+  &:hover::before {
+    animation-play-state: running;
   }
 }
 
@@ -1104,11 +1132,16 @@ body {
     height: 200%;
     background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
     animation: shimmer 3s ease-in-out infinite;
+    animation-play-state: paused;
   }
 
   &:hover {
     filter: brightness(1.1);
     transform: translateY(-1px);
+
+    &::before {
+      animation-play-state: running;
+    }
   }
 }
 
@@ -1231,12 +1264,17 @@ body {
     height: 200%;
     background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.06) 50%, transparent 60%);
     animation: shimmer 3s ease-in-out infinite;
+    animation-play-state: paused;
   }
 
   &:hover {
     transform: translateY(-2px);
     border-color: var(--border-accent);
     box-shadow: 0 8px 24px var(--glow-teal);
+
+    &::before {
+      animation-play-state: running;
+    }
   }
 
   &:active {

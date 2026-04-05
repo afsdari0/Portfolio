@@ -195,11 +195,18 @@
   const scrolled = ref(false)
   const scrollPercent = ref(0)
 
-  // Scroll-aware navbar
+  // Scroll-aware navbar (RAF-throttled)
+  let scrollTicking = false
   function onScroll () {
-    scrolled.value = window.scrollY > 100
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight
-    scrollPercent.value = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0
+    if (!scrollTicking) {
+      scrollTicking = true
+      requestAnimationFrame(() => {
+        scrolled.value = window.scrollY > 100
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+        scrollPercent.value = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0
+        scrollTicking = false
+      })
+    }
   }
 
   function scrollToTop () {
@@ -494,6 +501,21 @@
 
 .site-nav-drawer__item--accent :deep(.v-list-item-title) {
   color: var(--accent-teal) !important;
+}
+
+@media (max-width: 960px) {
+  .site-nav__inner,
+  .site-nav__inner--scrolled {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-glass-solid);
+  }
+
+  .scroll-top-fab {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-glass-solid);
+  }
 }
 
 @media (max-width: 380px) {

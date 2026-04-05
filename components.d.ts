@@ -12,7 +12,7 @@ declare module 'vue' {
     AppToast: typeof import('./src/components/AppToast.vue')['default']
     CarouselProjects: typeof import('./src/components/carouselProjects.vue')['default']
     CatalogCard: typeof import('./src/components/allProjects/CatalogCard.vue')['default']
-    DialogProjects: typeof import('./src/components/dialogProjects.vue')['default']
+    DialogProjects: typeof import('./src/components/DialogProjects.vue')['default']
     EditorialCard: typeof import('./src/components/allProjects/EditorialCard.vue')['default']
     Footer: typeof import('./src/components/footer.vue')['default']
     ProjectCard: typeof import('./src/components/projectCard.vue')['default']

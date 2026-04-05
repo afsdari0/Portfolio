@@ -12,14 +12,18 @@
         <component :is="Component" :key="route.path" />
       </transition>
     </router-view>
-    <DialogProjects />
+    <DialogProjects v-if="dialogStore.isOpen" />
   </v-app>
 </template>
 
 <script setup>
-  import { watch } from 'vue'
+  import { defineAsyncComponent, watch } from 'vue'
   import { useTheme } from 'vuetify'
+  import { useDialogStore } from '@/stores/dialogProjects'
   import { useThemeStore } from '@/stores/theme'
+
+  const DialogProjects = defineAsyncComponent(() => import('@/components/DialogProjects.vue'))
+  const dialogStore = useDialogStore()
 
   const vuetifyTheme = useTheme()
   const themeStore = useThemeStore()

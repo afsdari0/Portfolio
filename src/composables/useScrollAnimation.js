@@ -2,9 +2,16 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 export function useScrollAnimation () {
   const scrollY = ref(0)
+  let ticking = false
 
   function onScroll () {
-    scrollY.value = window.scrollY
+    if (!ticking) {
+      ticking = true
+      requestAnimationFrame(() => {
+        scrollY.value = window.scrollY
+        ticking = false
+      })
+    }
   }
 
   onMounted(() => {
