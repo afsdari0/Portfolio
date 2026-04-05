@@ -1,10 +1,8 @@
 <template>
-  <div ref="sentinelRef" class="filter-sentinel" />
   <nav
     ref="barRef"
     aria-label="Filtros de categoria"
     class="sticky-filter"
-    :class="{ 'is-sticky': isSticky }"
   >
     <div class="sticky-filter__inner">
       <button
@@ -49,12 +47,9 @@
   defineEmits(['update:modelValue'])
 
   const { t } = useI18n()
-  const sentinelRef = ref(null)
   const barRef = ref(null)
-  const isSticky = ref(false)
   const buttonRefs = reactive({})
   const indicatorStyle = ref({})
-  let observer = null
 
   const categoriesWithCount = computed(() => {
     return [
@@ -82,45 +77,17 @@
 
   onMounted(() => {
     nextTick(updateIndicator)
-
-    if (sentinelRef.value) {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          isSticky.value = !entry.isIntersecting
-        },
-        { threshold: 0 },
-      )
-      observer.observe(sentinelRef.value)
-    }
-
     window.addEventListener('resize', updateIndicator, { passive: true })
   })
 
   onUnmounted(() => {
-    observer?.disconnect()
     window.removeEventListener('resize', updateIndicator)
   })
 </script>
 
 <style scoped lang="scss">
-.filter-sentinel {
-  height: 1px;
-  pointer-events: none;
-}
-
 .sticky-filter {
-  position: sticky;
-  top: 64px;
-  z-index: 10;
   padding: 0.85rem 0;
-  transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
-
-  &.is-sticky {
-    background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 4px 32px var(--shadow-medium);
-    border-bottom: 1px solid var(--border-subtle);
-  }
 }
 
 .sticky-filter__inner {
