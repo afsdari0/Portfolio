@@ -46,9 +46,7 @@
   },
   "skills": {
     "title": "Skills",
-    "lead": "The technologies I work with daily — tap to see <strong>details and certifications</strong>.",
-    "estimatedLevel": "Estimated level: {level}%",
-    "close": "Close",
+    "lead": "The technologies I work with <strong>daily</strong>.",
     "tierAdvanced": "▸ Advanced",
     "tierIntermediate": "▸ Intermediate",
     "tierFamiliar": "▸ Familiar"

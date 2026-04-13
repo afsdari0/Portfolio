@@ -46,9 +46,7 @@
   },
   "skills": {
     "title": "Habilidades",
-    "lead": "As tecnologias que domino no dia a dia — toque para ver <strong>detalhes e certificações</strong>.",
-    "estimatedLevel": "Nível estimado: {level}%",
-    "close": "Fechar",
+    "lead": "As tecnologias que domino no <strong>dia a dia</strong>.",
     "tierAdvanced": "▸ Avançado",
     "tierIntermediate": "▸ Intermediário",
     "tierFamiliar": "▸ Familiar"

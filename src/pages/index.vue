@@ -186,7 +186,6 @@
                 >
                   <v-card
                     class="skill-preview d-flex flex-column align-center justify-center"
-                    @click="openSkill(skill)"
                   >
                     <div class="skill-ring-wrap">
                       <svg class="skill-ring" viewBox="0 0 80 80">
@@ -219,51 +218,6 @@
               </v-row>
             </div>
 
-            <v-dialog
-              v-model="dialogSkills"
-              :fullscreen="smAndDown"
-              :max-width="520"
-              scrollable
-              transition="dialog-bottom-transition"
-              @update:model-value="onSkillsDialogToggle"
-            >
-              <v-card v-if="selectedSkill" class="skill-dialog pa-6">
-                <div class="skill-dialog__header">
-                  <div class="skill-dialog__headline">
-                    <v-icon class="mr-3 dialog-skill-icon" :icon="selectedSkill.icon" size="48" />
-                    <h3 class="skill-title">{{ selectedSkill.name }}</h3>
-                  </div>
-                  <v-btn
-                    :aria-label="$t('skills.close')"
-                    icon
-                    size="small"
-                    variant="text"
-                    @click="closeSkillDialog"
-                  >
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                </div>
-                <v-progress-linear
-                  class="skill-bar mb-6"
-                  color="primary"
-                  height="10"
-                  :model-value="animatedLevel"
-                  rounded
-                />
-                <div class="cert-buttons d-flex flex-wrap ga-3">
-                  <v-btn
-                    v-for="(cert, i) in selectedSkill.certifications"
-                    :key="i"
-                    class="cert-btn"
-                    :href="cert.link"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {{ cert.name }}
-                  </v-btn>
-                </div>
-              </v-card>
-            </v-dialog>
           </v-container>
         </section>
 
@@ -359,16 +313,14 @@
 
 <script setup>
   import emailjs from '@emailjs/browser'
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useDisplay } from 'vuetify'
   import AppLogo from '@/components/AppLogo.vue'
   import AppToast from '@/components/AppToast.vue'
   import carouselProjects from '@/components/carouselProjects.vue'
   import { useScrollAnimation } from '@/composables/useScrollAnimation'
 
   const { t } = useI18n()
-  const { smAndDown } = useDisplay()
   const { scrollY } = useScrollAnimation()
 
   const NAV_OFFSET = 80
@@ -400,50 +352,13 @@
   }
 
   /* ---- Skills ---- */
-  const dialogSkills = ref(false)
-  const selectedSkill = ref(null)
-  const animatedLevel = ref(0)
-
   const skills = [
-    {
-      name: 'Vue.js',
-      icon: 'mdi-vuejs',
-      level: 90,
-      certifications: [
-        { name: 'Vue Mastery', link: 'https://vuemastery.com' },
-        { name: 'Frontend Mentor', link: 'https://frontendmentor.io' },
-      ],
-    },
-    {
-      name: 'Vuetify',
-      icon: 'mdi-vuetify',
-      level: 85,
-      certifications: [{ name: 'Vuetify Pro', link: '#' }],
-    },
-    {
-      name: 'JavaScript',
-      icon: 'mdi-language-javascript',
-      level: 95,
-      certifications: [{ name: 'FreeCodeCamp', link: 'https://freecodecamp.org' }],
-    },
-    {
-      name: 'Python',
-      icon: 'mdi-language-python',
-      level: 70,
-      certifications: [{ name: 'Python.org', link: 'https://python.org' }],
-    },
-    {
-      name: 'SCSS',
-      icon: 'mdi-sass',
-      level: 88,
-      certifications: [{ name: 'CSS-Tricks', link: 'https://css-tricks.com' }],
-    },
-    {
-      name: 'Git',
-      icon: 'mdi-git',
-      level: 80,
-      certifications: [{ name: 'GitHub Docs', link: 'https://docs.github.com' }],
-    },
+    { name: 'Vue.js', icon: 'mdi-vuejs', level: 90 },
+    { name: 'Vuetify', icon: 'mdi-vuetify', level: 85 },
+    { name: 'JavaScript', icon: 'mdi-language-javascript', level: 95 },
+    { name: 'Python', icon: 'mdi-language-python', level: 70 },
+    { name: 'SCSS', icon: 'mdi-sass', level: 88 },
+    { name: 'Git', icon: 'mdi-git', level: 80 },
   ]
 
   const skillTiers = computed(() => {
@@ -455,39 +370,6 @@
     if (intermediate.length > 0) tiers.push({ key: 'intermediate', label: t('skills.tierIntermediate'), skills: intermediate })
     if (familiar.length > 0) tiers.push({ key: 'familiar', label: t('skills.tierFamiliar'), skills: familiar })
     return tiers
-  })
-
-  function openSkill (skill) {
-    selectedSkill.value = skill
-    animatedLevel.value = 0
-    dialogSkills.value = true
-  }
-
-  function closeSkillDialog () {
-    dialogSkills.value = false
-  }
-
-  function onSkillsDialogToggle (open) {
-    if (!open) selectedSkill.value = null
-  }
-
-  /* ---- Animated skill level counter ---- */
-  watch(dialogSkills, open => {
-    if (open && selectedSkill.value) {
-      animatedLevel.value = 0
-      const target = selectedSkill.value.level
-      const duration = 600
-      const start = performance.now()
-
-      function step (now) {
-        const elapsed = now - start
-        const progress = Math.min(elapsed / duration, 1)
-        const eased = 1 - Math.pow(1 - progress, 3)
-        animatedLevel.value = target * eased
-        if (progress < 1) requestAnimationFrame(step)
-      }
-      requestAnimationFrame(step)
-    }
   })
 
   /* ---- Formulário ---- */
