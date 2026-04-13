@@ -1,79 +1,116 @@
-# Vuetify (Default)
+<div align="center">
 
-This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
+# 🌐 Portfolio — Dario Ramos
 
-## ❗️ Important Links
+**Meu portfolio pessoal de desenvolvedor web, construído com Vue 3, Vuetify 3 e Vite.**
 
-- 📄 [Docs](https://vuetifyjs.com/)
-- 🚨 [Issues](https://issues.vuetifyjs.com/)
-- 🏬 [Store](https://store.vuetifyjs.com/)
-- 🎮 [Playground](https://play.vuetifyjs.com/)
-- 💬 [Discord](https://community.vuetifyjs.com)
+[![Deploy](https://github.com/afsdari0/Portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/afsdari0/Portfolio/actions/workflows/deploy.yml)
+![Vue](https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs&logoColor=white)
+![Vuetify](https://img.shields.io/badge/Vuetify-3.9-1867C0?logo=vuetify&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+![Pinia](https://img.shields.io/badge/Pinia-3-ffd859?logo=pinia&logoColor=black)
 
-## 💿 Install
+<br/>
 
-Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
+### 🔗 [darioramos.dev](https://darioramos.dev)
 
-| Package Manager                                                | Command        |
-|---------------------------------------------------------------|----------------|
-| [yarn](https://yarnpkg.com/getting-started)                   | `yarn install` |
-| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install)     | `npm install`  |
-| [pnpm](https://pnpm.io/installation)                          | `pnpm install` |
-| [bun](https://bun.sh/#getting-started)                        | `bun install`  |
+</div>
 
-After completing the installation, your environment is ready for Vuetify development.
+---
 
 ## ✨ Features
 
-- 🖼️ **Optimized Front-End Stack**: Leverage the latest Vue 3 and Vuetify 3 for a modern, reactive UI development experience. [Vue 3](https://v3.vuejs.org/) | [Vuetify 3](https://vuetifyjs.com/en/)
-- 🗃️ **State Management**: Integrated with [Pinia](https://pinia.vuejs.org/), the intuitive, modular state management solution for Vue.
-- 🚦 **Routing and Layouts**: Utilizes Vue Router for SPA navigation and vite-plugin-vue-layouts for organizing Vue file layouts. [Vue Router](https://router.vuejs.org/) | [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
-- ⚡ **Next-Gen Tooling**: Powered by Vite, experience fast cold starts and instant HMR (Hot Module Replacement). [Vite](https://vitejs.dev/)
-- 🧩 **Automated Component Importing**: Streamline your workflow with unplugin-vue-components, automatically importing components as you use them. [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
+| Feature | Descrição |
+|---------|-----------|
+| 🌙 **Dark / Light Mode** | Tema claro e escuro com persistência em localStorage |
+| 🌎 **Bilíngue (pt-BR / en)** | Internacionalização completa com vue-i18n, troca em tempo real |
+| 🃏 **Sistema de Rank** | Classificação estilo game (S / A / B / C) com badges e bordas animadas |
+| 🎴 **3D Tilt Cards** | Efeito de perspectiva 3D no hover dos cards de projeto |
+| 🌀 **Parallax & Partículas** | Orbs flutuantes com parallax no scroll + partículas CSS em camadas |
+| 📱 **Responsivo** | Layout adaptável com bento grid, scroll-snap mobile e breakpoints otimizados |
+| ⚡ **Code Splitting** | Chunks separados para Vuetify, Vue vendor e i18n — carregamento otimizado |
+| 📬 **Formulário de Contato** | Envio direto via EmailJS, sem necessidade de backend |
+| 🚀 **CI/CD Automático** | Deploy via GitHub Actions para GitHub Pages a cada push na `main` |
 
-These features are curated to provide a seamless development experience from setup to deployment, ensuring that your Vuetify application is both powerful and maintainable.
+---
 
-## 💡 Usage
+## 🛠️ Tech Stack
 
-This section covers how to start the development server and build your project for production.
+| Camada | Tecnologia |
+|--------|-----------|
+| **Framework** | Vue 3 (Composition API + `<script setup>`) |
+| **UI** | Vuetify 3 (Material Design) |
+| **Build** | Vite 6 |
+| **State** | Pinia 3 |
+| **Routing** | Vue Router 4 (file-based via unplugin-vue-router) |
+| **i18n** | vue-i18n 9 |
+| **Estilos** | SCSS (sass-embedded) + CSS custom properties |
+| **Ícones** | MDI + Phosphor Icons |
+| **Tipografia** | Sora · DM Sans · JetBrains Mono (Google Fonts) |
+| **Email** | EmailJS |
+| **Hosting** | GitHub Pages + domínio customizado |
 
-### Starting the Development Server
+---
 
-To start the development server with hot-reload, run the following command. The server will be accessible at [http://localhost:3000](http://localhost:3000):
+## 📁 Estrutura do Projeto
 
-```bash
-yarn dev
+```
+src/
+├── assets/            # SVGs, imagens de projetos
+├── components/        # Componentes reutilizáveis (cards, nav, toast, logo...)
+│   └── allProjects/   # Componentes específicos da página de projetos
+├── composables/       # useScrollAnimation, useCardTilt
+├── data/              # projects.js, rankMeta.js
+├── locales/           # pt-BR.json, en.json
+├── pages/             # Rotas (index.vue, allProjects.vue)
+├── plugins/           # Vuetify, i18n, router
+├── sass/              # Temas, variáveis, utilitários globais
+└── stores/            # Pinia (theme, locale, dialogProjects)
 ```
 
-(Repeat for npm, pnpm, and bun with respective commands.)
+---
 
-> Add NODE_OPTIONS='--no-warnings' to suppress the JSON import warnings that happen as part of the Vuetify import mapping. If you are on Node [v21.3.0](https://nodejs.org/en/blog/release/v21.3.0) or higher, you can change this to NODE_OPTIONS='--disable-warning=5401'. If you don't mind the warning, you can remove this from your package.json dev script.
+## 🚀 Getting Started
 
-### Building for Production
+### Pré-requisitos
 
-To build your project for production, use:
+- [Node.js](https://nodejs.org/) 20+
+- npm
+
+### Instalação
 
 ```bash
-yarn build
+# Clone o repositório
+git clone https://github.com/afsdari0/Portfolio.git
+cd Portfolio
+
+# Instale as dependências
+npm install
 ```
 
-(Repeat for npm, pnpm, and bun with respective commands.)
+### Comandos
 
-Once the build process is completed, your application will be ready for deployment in a production environment.
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Servidor de desenvolvimento em `localhost:3000` |
+| `npm run build` | Build de produção |
+| `npm run preview` | Preview do build local |
+| `npm run lint` | ESLint com auto-fix |
 
-## 💪 Support Vuetify Development
+---
 
-This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library with a comprehensive collection of Vue components. Vuetify is an MIT licensed Open Source project that has been made possible due to the generous contributions by our [sponsors and backers](https://vuetifyjs.com/introduction/sponsors-and-backers/). If you are interested in supporting this project, please consider:
+## 🌐 Deploy
 
-- [Requesting Enterprise Support](https://support.vuetifyjs.com/)
-- [Sponsoring John on Github](https://github.com/users/johnleider/sponsorship)
-- [Sponsoring Kael on Github](https://github.com/users/kaelwd/sponsorship)
-- [Supporting the team on Open Collective](https://opencollective.com/vuetify)
-- [Becoming a sponsor on Patreon](https://www.patreon.com/vuetify)
-- [Becoming a subscriber on Tidelift](https://tidelift.com/subscription/npm/vuetify)
-- [Making a one-time donation with Paypal](https://paypal.me/vuetify)
+O deploy é automático via **GitHub Actions**. A cada push na branch `main`:
 
-## 📑 License
-[MIT](http://opensource.org/licenses/MIT)
+1. Instala dependências (`npm ci`)
+2. Executa o build (`npm run build`)
+3. Publica o diretório `dist/` no GitHub Pages
 
-Copyright (c) 2016-present Vuetify, LLC
+O site fica disponível em [darioramos.dev](https://darioramos.dev) através de domínio customizado configurado via Cloudflare DNS.
+
+---
+
+## 📄 Licença
+
+MIT © [Dario Ramos](https://github.com/afsdari0)
